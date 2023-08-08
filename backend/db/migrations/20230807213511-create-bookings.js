@@ -4,53 +4,55 @@
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
-};
+}
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Bookings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING(50),
-        allowNull: false
-      },
-      lastName: {
-        type: Sequelize.STRING(50),
-        allowNull: false
-      },
-      username: {
-        type: Sequelize.STRING(30),
+      spotId: {
         allowNull: false,
-        unique: true
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Spots',
+        },
+        onDelete: 'CASCADE',
       },
-      email: {
-        type: Sequelize.STRING(256),
+      userId: {
         allowNull: false,
-        unique: true
+        type: Sequelize.INTEGER,
+        refereces: {
+          model: 'Users',
+        },
+        onDelete: 'CASCADE',
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
-        allowNull: false
+      startDate: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      endDate: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
+    options.tableName = "Bookings"
     await queryInterface.dropTable(options);
   }
 };
