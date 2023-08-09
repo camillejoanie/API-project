@@ -78,4 +78,7 @@ app.use((err, _req, res, _next) => {
     });
 });
 
+const spotsRouter = require('./routes/api/spots');
+app.use('/api/spots', spotsRouter);
+
 module.exports = app;
