@@ -1,5 +1,5 @@
 const express = require('express');
-const { Review, User, Spot, ReviewImage } = require('../../db/models');
+const { Review, User, Spot, ReviewImage, SpotImage } = require('../../db/models');
 
 const { check, validationResult } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -32,7 +32,12 @@ router.get('/current', requireAuth, async (req, res) => {
             },
             {
                 model: Spot,
-                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', 'previewImage'],
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
+                include: [
+                    {
+                        model: SpotImage,
+                    }
+                ]
             },
             {
                 model: ReviewImage,
@@ -41,7 +46,31 @@ router.get('/current', requireAuth, async (req, res) => {
         ],
     });
 
-    return res.status(200).json({ Reviews: reviews });
+    let reviewsArray = [];
+    reviews.forEach((review) => {
+        reviewsArray.push(review.toJSON());
+    })
+
+    reviewsArray.forEach((review) => {
+        review.Spot.SpotImages.forEach((image) => {
+            if(image.preview === true) {
+                review.Spot.previewImage = image.url;
+            }
+        })
+    })
+
+    // const reviewsArray = reviews.map((review) => {
+    //     const newReview = review.toJSON();
+
+    //     newReview.Spot.SpotImages.forEach((image) => {
+    //         if(image.preview === true) {
+    //             newReview.Spot.previewImage = image.url;
+    //         }
+    //     })
+    // })
+    
+
+    return res.status(200).json({ Review: reviewsArray });
     // const userId = req.user.id;
     // const reviews = await Review.findAll({
     //     where: { userId },
@@ -62,13 +91,15 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         }
     });
 
-    // if(!review) {
-    //     return res.status(404).json({ message: "Review couldn't be found" });
-    // };
+    if(!review) {
+        return res.status(404).json({ message: "Review couldn't be found" });
+    };
 
-    // if(review.ReviewImages.length >= 10) {
-    //     return res.status(403).json({ message: "Maximum number of images for this resource was reached" });
-    // };
+    const reviewImages = await ReviewImage.findAll();
+
+    if(review.id === req.user.id && reviewImages.length >= 10) {
+        return res.status(403).json({ message: "Maximum number of images for this resource was reached" });
+    };
 
     const { url } = req.body;
 
@@ -76,8 +107,13 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         reviewId,
         url,
     });
+
+    const response = {
+        id: newImage.id,
+        url: newImage.url
+    }
     
-    return res.status(200).json(newImage);
+    return res.status(200).json(response);
 });
 
 //edit a review

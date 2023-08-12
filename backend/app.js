@@ -78,7 +78,13 @@ app.use((err, _req, res, _next) => {
     });
 });
 
-const spotsRouter = require('./routes/api/spots');
-app.use('/api/spots', spotsRouter);
+// const spotsRouter = require('./routes/api/spots');
+// app.use('/api/spots', spotsRouter);
+
+// const spotImagesRoute = require('./routes/api/spot-images');
+// app.use('/api/spot-images', spotImagesRoute);
+
+// const reviewImagesRoute = require('./routes/api/review-images');
+// app.use('./api/review-images', reviewImagesRoute);
 
 module.exports = app;
