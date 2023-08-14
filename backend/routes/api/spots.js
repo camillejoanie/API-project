@@ -240,25 +240,28 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
     const spotId = req.params.spotId;
     const spot = await Spot.findByPk(spotId);
+
     if(spot) {
         if(user.id === spot.ownerId) {
             const { url, preview } = req.body;
-
+    
             const newSpotImage = await SpotImage.create({
                 spotId,
                 url,
                 preview
             });
-
+    
             return res.status(201).json({
                 id: newSpotImage.id,
                 preview: newSpotImage.preview,
                 url: newSpotImage.url,
             });
         } else {
-            return res.status(404).json({ message: "Spot couldn't be found" });
-        }
-    };
+            return res.status(403).json({ message: "You don't have permission to add an image to this spot" });
+        };
+    } else {
+        return res.status(404).json({ message: "Spot couldn't be found" });
+    }
 });
 // const { user } = req;
     // const { url, preview } = req.body;

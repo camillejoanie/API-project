@@ -137,7 +137,7 @@ router.delete('/:bookingId', requireAuth, async(req, res) => {
     });
 
     if(booking) {
-        if(booking.userId === userId && booking.Spot.ownerId === userId) {
+        if(booking.userId === userId) {
             const currentDate = new Date();
             if(booking.startDate > currentDate) {
                 await booking.destroy();
