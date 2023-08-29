@@ -1,6 +1,7 @@
 const express = require('express');
 require('express-async-errors');
 const morgan = require('morgan');
+const path = require('path');
 const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
@@ -15,6 +16,9 @@ const app = express();
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
+
+// Serve static assets from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Security Middleware
 if (!isProduction) {

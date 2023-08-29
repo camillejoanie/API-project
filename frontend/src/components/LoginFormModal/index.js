@@ -25,12 +25,13 @@ function LoginFormModal() {
     };
   
     return (
-      <>
-        <h1>Log In</h1>
+      <div className="login-form-container">
+        <h1 className="login-form-title">Log In</h1>
         <form onSubmit={handleSubmit}>
           <label>
             Username or Email
             <input
+              className="login-input"
               type="text"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
@@ -40,6 +41,7 @@ function LoginFormModal() {
           <label>
             Password
             <input
+              className="login-input"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -47,11 +49,11 @@ function LoginFormModal() {
             />
           </label>
           {errors.credential && (
-            <p>{errors.credential}</p>
+            <p className="login-error">{errors.credential}</p>
           )}
-          <button type="submit">Log In</button>
+          <button className="login-button" type="submit">Log In</button>
         </form>
-      </>
+      </div>
     );
 }
   

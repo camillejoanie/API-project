@@ -1,0 +1,56 @@
+/* frontend/src/components/LoginForm/LoginForm.css */
+
+/* Container for the login form */
+.login-form-container {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+/* Heading style */
+.login-form-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: rgb(235, 136, 153);
+}
+
+label {
+    color: rgb(235, 136, 153);
+}
+
+/* Input fields */
+.login-input {
+  width: 97%;
+  height: 30px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+/* Error message */
+.login-error {
+  color: #ff0000;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* Submit button */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(235, 136, 153);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: lightpink;
+}

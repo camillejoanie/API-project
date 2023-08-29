@@ -11,7 +11,9 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/">
+          <img src={process.env.PUBLIC_URL + "/images/airbnboba_logo.png"} alt="AirBnBOBA logo"></img>
+        </NavLink>
       </li>
       {isLoaded && (
         <li>

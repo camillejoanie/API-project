@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+// import hamburger from '../../../public/images/hamburger.svg';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,20 +42,21 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div>
+      <button onClick={openMenu} className="button-container">
+        <img src={process.env.PUBLIC_URL + "/images/hamburger.svg"} className="hamburger" alt="Hamburger" />
+        <i className="fas fa-user-circle user-icon" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
+          <div className="drop-down-container">
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
-          </>
+          </div>
         ) : (
           <>
             <OpenModalMenuItem
@@ -70,7 +72,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

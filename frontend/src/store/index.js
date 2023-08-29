@@ -1,11 +1,13 @@
 // frontend/src/store/index.js
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import sessionReducer from "./session";
+import landingPageReducer from './landingPage';
 import thunk from 'redux-thunk';
 
-import sessionReducer from "./session";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  landingPage: landingPageReducer,
 });
 
 let enhancer;

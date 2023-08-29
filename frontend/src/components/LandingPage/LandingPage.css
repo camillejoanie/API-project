@@ -1,0 +1,66 @@
+/* LandingPage.css */
+  
+.navigation-bar {
+  background-color: #fff; /* Example background color */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example box shadow */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333; /* Example text color */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #555; /* Example text color */
+}
+
+/* frontend/src/components/LandingPage/LandingPage.css */
+
+/* Container for the entire landing page */
+.landing-page-container {
+  padding: 20px;
+  /* Add background, font, and other styling as needed */
+}
+
+/* Styles for spot tiles */
+.spot-tile-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.spot-tile {
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  /* Add box shadow and other styling as needed */
+}
+
+.spot-tile:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Add transition effects for smooth hover animations */
+}
+
+/* Style for spot details */
+.spot-details {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Add more styles for other elements like links, headings, etc. */
+
