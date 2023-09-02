@@ -2,12 +2,21 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import sessionReducer from "./session";
 import landingPageReducer from './landingPage';
+import spotsReducer from './spots';
+import spotDetailReducer from './spotDetailPage';
+import manageSpotsReducer from './manageSpots';
+import updateSpotReducer from './updateSpot';
 import thunk from 'redux-thunk';
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   landingPage: landingPageReducer,
+  spots: spotsReducer,
+  spotDetailPage: spotDetailReducer,
+  manageSpots: manageSpotsReducer,
+  updateSpot: updateSpotReducer,
+  
 });
 
 let enhancer;

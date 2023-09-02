@@ -41,8 +41,15 @@ function SignupFormModal() {
     });
   };
 
+  const handleClose = () => {
+    closeModal(); // Call the closeModal function from your context
+  };
+
   return (
     <div className="signup-form-container">
+      <button className="close-button" onClick={handleClose}>
+                X
+      </button>
       <h1 className="signup-form-title">Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label>

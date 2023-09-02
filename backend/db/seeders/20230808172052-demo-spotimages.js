@@ -22,38 +22,38 @@ module.exports = {
    await SpotImage.bulkCreate([
     {
       spotId: 1,
-      url: "/images/1_1.png",
+      url: "https://s3-media0.fl.yelpcdn.com/bphoto/IVV806FwEQJldPpI4BD99w/348s.jpg",
       preview: true,
     },
     {
       spotId: 1,
-      url: "/images/1_2.png",
+      url: "https://i.postimg.cc/vgsD7pwP/urbanritual2.jpg",
       preview: true,
     },
     {
       spotId: 1,
-      url: "/images/1_3.webp",
+      url: "https://i.postimg.cc/ppTrBf3t/urbanritual3.jpg",
       preview: true,
     },
     {
       spotId: 1,
-      url: "/images/1_4.jpeg",
+      url: "https://i.postimg.cc/GB0prZtc/urbanritualmenu.jpg",
       preview: true,
     },
     {
       spotId: 1,
-      url: "/images/1_5.jpeg",
+      url: "https://i.postimg.cc/CZjxKmnb/urbanritualstore.jpg",
       preview: true,
     },
     {
       spotId: 2,
-      url: "/images/2_1.jpeg",
-      preview: false,
+      url: "https://i.postimg.cc/G9bH4wQt/wanpo1.jpg",
+      preview: true,
     },
     {
-      spotId: 2,
-      url: '/images/2_2.jpeg',
-      preview: false,
+      spotId: 3,
+      url: 'https://i.postimg.cc/CBTnPRks/3-1.jpg',
+      preview: true,
     },
    ]);
   },

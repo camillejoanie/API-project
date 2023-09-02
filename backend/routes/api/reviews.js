@@ -59,25 +59,8 @@ router.get('/current', requireAuth, async (req, res) => {
         })
     })
 
-    // const reviewsArray = reviews.map((review) => {
-    //     const newReview = review.toJSON();
-
-    //     newReview.Spot.SpotImages.forEach((image) => {
-    //         if(image.preview === true) {
-    //             newReview.Spot.previewImage = image.url;
-    //         }
-    //     })
-    // })
-    
-
     return res.status(200).json({ Review: reviewsArray });
-    // const userId = req.user.id;
-    // const reviews = await Review.findAll({
-    //     where: { userId },
-    // });
-    // res.json(reviews);
 });
-
 
 //add image to review based on review id
 router.post('/:reviewId/images', requireAuth, async (req, res) => {

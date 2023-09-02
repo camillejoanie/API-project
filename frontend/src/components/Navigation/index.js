@@ -12,14 +12,19 @@ function Navigation({ isLoaded }){
     <ul>
       <li>
         <NavLink exact to="/">
-          <img src={process.env.PUBLIC_URL + "/images/airbnboba_logo.png"} alt="AirBnBOBA logo"></img>
+          <img src={process.env.PUBLIC_URL + "/images/newairbnboba_logo.png"} alt="AirBnBOBA logo" className="logo"></img>
         </NavLink>
       </li>
-      {isLoaded && (
-        <li>
-          <ProfileButton user={sessionUser} />
-        </li>
-      )}
+      <li className="nav-right">
+        {isLoaded && (
+          <div className="nav-profile-create">
+            <NavLink exact to="/spots/create">
+              Book Out Your Boba
+            </NavLink>
+            <ProfileButton user={sessionUser} />
+          </div>
+        )}
+      </li>
     </ul>
   );
 }

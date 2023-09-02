@@ -30,7 +30,7 @@ module.exports = {
         lng: -90.1934,
         name: 'Urban Ritual',
         description: 'Founded in the heart of San Francisco, Urban Ritual is an American brand that aims to bring unity to everyone through a common daily routine—coffee and tea.',
-        price: 25,
+        price: 100,
       },
       {
         ownerId: 2,
@@ -42,7 +42,7 @@ module.exports = {
         lng: -90.1504,
         name: 'Wanpo Tea Shop',
         description: "A traditional tea beverage brand brewed out of Taiwan’s military dependents’ village.",
-        price: 30,
+        price: 120,
       },
       {
         ownerId: 3,
@@ -54,8 +54,8 @@ module.exports = {
         lng: -90.8764,
         name: 'Boba Guys',
         description: 'A boba shop where the creators wanted to fundamentally change the way people view boba, tea, and perhaps, food.',
-        price: 17,
-      }
+        price: 90,
+      },
     ]);
   },
 

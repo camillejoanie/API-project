@@ -1,11 +1,12 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
-// import hamburger from '../../../public/images/hamburger.svg';
+import ManageSpots from "../ManageSpotsPage/ManageSpots";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -44,8 +45,8 @@ function ProfileButton({ user }) {
   return (
     <div>
       <button onClick={openMenu} className="button-container">
-        <img src={process.env.PUBLIC_URL + "/images/hamburger.svg"} className="hamburger" alt="Hamburger" />
-        <i className="fas fa-user-circle user-icon" />
+        <img src={process.env.PUBLIC_URL + "/images/realhamburger.svg"} className="hamburger" alt="Hamburger" />
+          <i className="fas fa-user-circle user-icon" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -53,6 +54,9 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
+            <li>
+              <Link to="/spots/current" onClick={closeMenu}>Manage Spots</Link>
+            </li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>

@@ -1,19 +1,20 @@
 /* LandingPage.css */
-  
+body {
+  background-color: rgb(243, 236, 242);
+}  
+
 .navigation-bar {
-  background-color: #fff; /* Example background color */
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example box shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
-  color: #333; /* Example text color */
 }
 
 .nav-links {
@@ -27,32 +28,31 @@
   color: #555; /* Example text color */
 }
 
-/* frontend/src/components/LandingPage/LandingPage.css */
-
 /* Container for the entire landing page */
 .landing-page-container {
   padding: 20px;
-  /* Add background, font, and other styling as needed */
 }
 
 /* Styles for spot tiles */
 .spot-tile-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
 
-.spot-tile {
-  border: 1px solid #e0e0e0;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #fff;
-  /* Add box shadow and other styling as needed */
+@media screen and (min-width: 768px) {
+  .spot-tile-list {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }
 
-.spot-tile:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Add transition effects for smooth hover animations */
+.spot-tile {
+  padding: 0px;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 30vw;
+  position: relative;
+  z-index: 1;
 }
 
 /* Style for spot details */
@@ -62,5 +62,80 @@
   color: #666;
 }
 
-/* Add more styles for other elements like links, headings, etc. */
+img.spot-images {
+  width: 30vw;
+  height: 30vw;
+  border-radius: 15px;
+}
 
+div.spot-name,
+div.spot-location,
+div.spot-price {
+  font-family: Andale Mono, monospace;
+  color: rgb(235, 136, 153);
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+div.spot-image-container {
+  background-color: rgb(243, 236, 242);
+  z-index: 1;
+}
+
+div.spot-name {
+  font-size: large;
+  font-weight: bolder;
+}
+
+div.spot-location
+div.spot-price {
+  margin-top: 10 px;
+}
+
+/* Style for the star rating container
+.spot-star-rating {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+/* Style for the star image */
+/* .star-image {
+  width: 18px; 
+  height: 18px; 
+  margin-left: 2px; 
+}
+
+/* If you want to space out the stars */
+/* .star-image + .star-image {
+  margin-left: 5px;
+} */
+
+.spot-star-rating {
+  /* Other styling for the spot-star-rating */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 10px; /* Adjust the right offset as needed */
+  bottom: 10px; /* Adjust the bottom offset as needed */
+}
+
+.new-star-text {
+  /* Other styling for the new-star-text */
+  margin-right: 5px; /* Adjust the margin as needed */
+}
+
+.heart-image {
+  /* Other styling for the heart-image */
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  margin-right: 5px; /* Adjust the margin as needed */
+  margin-bottom: 43px;
+}
+
+.average-rating-value {
+  /* Other styling for the average-rating-value */
+  font-size: 14px; /* Adjust the font size as needed */
+  margin-bottom: 43px;
+}

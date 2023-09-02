@@ -16,10 +16,12 @@
   font-weight: bold;
   text-align: center;
   color: rgb(235, 136, 153);
+  font-family: Andale Mono, monospace;
 }
 
 label {
     color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
 }
 
 /* Input fields */
@@ -49,8 +51,21 @@ label {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: Andale Mono, monospace;
 }
 
 .signup-button:hover {
   background-color: lightpink;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(235, 136, 153);
+  font-weight: bold;
 }
