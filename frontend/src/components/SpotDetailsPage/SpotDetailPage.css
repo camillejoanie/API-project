@@ -163,6 +163,7 @@
   text-align: center;
   width: 100%;
   transition: background-color 0.3s ease;
+  font-family: Andale Mono, monospace; 
 }
 
 .reserve-button:hover {
@@ -177,12 +178,15 @@
 
 .reviews-list {
   margin-top: 20px;
+  background-color: white;
+  border-radius: 30px;
 }
 
 .review-item {
   /* border: 1px solid #ccc; */
+  margin-left: 30px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   /* background-color: #f9f9f9; */
 }
 
@@ -213,4 +217,22 @@
 
 .reviews-header {
   display: flex;
+}
+
+.post-review-button {
+  padding: 10px 20px;
+  background-color: rgb(235, 136, 153);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  width: 200px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  font-family: Andale Mono, monospace;
+}
+
+.post-review-button:hover {
+  background-color: lightpink;
 }

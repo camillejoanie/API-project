@@ -3,6 +3,11 @@ body {
   background-color: rgb(243, 236, 242);
 }  
 
+.spot-image-container {
+  background-color: rgb(243, 236, 242);
+  z-index: 2;
+}
+
 .navigation-bar {
   padding: 10px 20px;
   display: flex;
@@ -75,11 +80,6 @@ div.spot-price {
   color: rgb(235, 136, 153);
   margin-left: 15px;
   margin-top: 5px;
-}
-
-div.spot-image-container {
-  background-color: rgb(243, 236, 242);
-  z-index: 1;
 }
 
 div.spot-name {

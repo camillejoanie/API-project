@@ -55,7 +55,7 @@ textarea {
 }
 
 button[type="submit"] {
-    background-color: #23536B;
+    background-color: rgb(235, 136, 153);
     color: #fff;
     padding: 10px 20px;
     border: none;

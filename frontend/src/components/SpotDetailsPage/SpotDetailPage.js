@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpotDetails, fetchSpotReviewsAsync } from "../../store/spotDetailPage";
+import { fetchSpotDetails, fetchSpotReviewsAsync, postReview } from "../../store/spotDetailPage";
+import ReviewModal from '../ReviewModal/ReviewModal';
 import "./SpotDetailPage.css";
 
 function SpotDetailPage() {
@@ -10,8 +11,17 @@ function SpotDetailPage() {
   const spot = useSelector((state) => state.spotDetailPage.spot);
   const isLoading = useSelector((state) => state.spotDetailPage.isLoading);
   const spotReviews = useSelector((state) => state.spotDetailPage.spotReviews);
+  const user = useSelector((state) => state.auth.user);
 
   const [showNoReviewsMessage, setShowNoReviewsMessage] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [comment, setComment] = useState('');
+  const [selectedRating, setSelectedRating] = useState(0);
+  const [serverError, setServerError] = useState('');
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const userHasPostedReview = useSelector((state) => state.spotDetailPage.userHasPostedReview);
+  const userIsOwner = useSelector((state) => state.spotDetailPage.userIsOwner);
 
   useEffect(() => {
     dispatch(fetchSpotDetails(spotId));
@@ -20,16 +30,46 @@ function SpotDetailPage() {
 
   useEffect(() => {
     // Check if there are no reviews and the current user is not the owner
-    if (spotReviews.length === 0 && !spot?.isOwner) {
+    if (spotReviews.length === 0) {
       setShowNoReviewsMessage(true);
     } else {
       setShowNoReviewsMessage(false);
     }
-  }, [spotReviews, spot]);
+  }, [spotReviews]);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
+  const openReviewModal = () => {
+    setIsModalOpen(true);
+  };
+  
+  const closeReviewModal = () => {
+    setIsModalOpen(false);
+    setComment('');
+    setSelectedRating(0);
+    setServerError('');
+  };
+
+  const handleSubmitReview = (reviewData) => {
+    if (comment.trim() === '') {
+      // Display an error or prevent submission when comment is empty
+      setServerError('Review text is required.');
+    } else {
+      dispatch(postReview(spotId, reviewData));
+    }
+  }  
+
+  // const handleLogin = () => {
+  //   // Dispatch the login action with user credentials
+  //   dispatch(login({ username: 'example', password: 'password' }));
+  // };
+
+  // const handleLogout = () => {
+  //   // Dispatch the logout action
+  //   dispatch(logout());
+  // };
 
   // if(!spot) {
   //   return <p>Spot Not Found.</p>
@@ -45,16 +85,10 @@ function SpotDetailPage() {
   // }
 
    // Render reviews data
-   const renderReviews = () => {
+  const renderReviews = () => {
     if (spotReviews.length === 0) {
       return <p>No reviews available for this spot.</p>;
   }
-
-  
-  const formatDate = (dateString) => {
-    const options = { month: 'long', year: 'numeric'};
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
   
   return (
     <div className="reviews-list">
@@ -79,11 +113,14 @@ function SpotDetailPage() {
   return (
     <div className="spot-detail-container">
   {/* Heading */}
+  {spot && (
   <div className="spot-detail-header">
     <h1 className="spot-name">{spot.name}</h1>
     {/* Location */}
     <p className="spot-location">{`${spot.city}, ${spot.state}, ${spot.country}`}</p>
   </div>
+)}
+
   <div className="spot-detail-images">
     {/* Large Image */}
     <img
@@ -151,6 +188,21 @@ function SpotDetailPage() {
       </p>
     )}
   </div>
+  {/* {isLoggedIn ? ( // Use an if statement to conditionally render the button */}
+      <button className="post-review-button" onClick={openReviewModal}>Post Your Review</button>
+        {/* ) : null} */}
+      {/* Modal for review form */}
+      {isModalOpen && (
+        <ReviewModal
+          comment={comment}
+          selectedRating={selectedRating}
+          serverError={serverError}
+          onClose={closeReviewModal}
+          onCommentChange={(e) => setComment(e.target.value)}
+          onRatingChange={(rating) => setSelectedRating(rating)}
+          onSubmit={handleSubmitReview}
+        />
+      )}
   {spotReviews && spotReviews.length > 0 ? (
     <div className="reviews-list">
       {spotReviews.map((review) => (

@@ -29,6 +29,7 @@ function LoginFormModal() {
     };
   
     return (
+      <div className="login-form-overlay">
       <div className="login-form-container">
         <button className="close-button" onClick={handleClose}>
                 X
@@ -60,6 +61,7 @@ function LoginFormModal() {
           )}
           <button className="login-button" type="submit">Log In</button>
         </form>
+      </div>
       </div>
     );
 }

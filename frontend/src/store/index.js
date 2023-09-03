@@ -6,6 +6,7 @@ import spotsReducer from './spots';
 import spotDetailReducer from './spotDetailPage';
 import manageSpotsReducer from './manageSpots';
 import updateSpotReducer from './updateSpot';
+import authReducer from './auth';
 import thunk from 'redux-thunk';
 
 
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
   spotDetailPage: spotDetailReducer,
   manageSpots: manageSpotsReducer,
   updateSpot: updateSpotReducer,
-  
+  auth: authReducer,
 });
 
 let enhancer;
