@@ -1,4 +1,7 @@
 'use strict';
+
+
+
 const {
   Model
 } = require('sequelize');
@@ -10,9 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       SpotImage.belongsTo(models.Spot, {
-        foreignKey: 'spotId',
+        foreignKey: "spotId",
       });
     }
   }
@@ -20,15 +22,16 @@ module.exports = (sequelize, DataTypes) => {
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      onDelete: 'CASCADE'
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     preview: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
+      defaultValue: true
+    }
   }, {
     sequelize,
     modelName: 'SpotImage',

@@ -1,9 +1,11 @@
-// backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
 const { User } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
+
+//This first function is setting the JWT cookie after a user is logged in or signed up.
+
 // Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
     // Create the token.
@@ -17,9 +19,9 @@ const setTokenCookie = (res, user) => {
       secret,
       { expiresIn: parseInt(expiresIn) } // 604,800 seconds = 1 week
     );
-  
+
     const isProduction = process.env.NODE_ENV === "production";
-  
+
     // Set the token cookie
     res.cookie('token', token, {
       maxAge: expiresIn * 1000, // maxAge in milliseconds
@@ -27,20 +29,22 @@ const setTokenCookie = (res, user) => {
       secure: isProduction,
       sameSite: isProduction && "Lax"
     });
-  
-    return token;
-};
 
-const restoreUser = (req, res, next) => {
+    return token;
+  };
+
+    //The restoreUser middleware will be connected to the API router so that all API
+    //route handlers will check if there is a current user logged in or not.
+  const restoreUser = (req, res, next) => {
     // token parsed from cookies
     const { token } = req.cookies;
     req.user = null;
-  
+
     return jwt.verify(token, secret, null, async (err, jwtPayload) => {
       if (err) {
         return next();
       }
-  
+
       try {
         const { id } = jwtPayload.data;
         req.user = await User.findByPk(id, {
@@ -52,22 +56,26 @@ const restoreUser = (req, res, next) => {
         res.clearCookie('token');
         return next();
       }
-  
+
       if (!req.user) res.clearCookie('token');
-  
+
       return next();
     });
-};
+  };
 
-// If there is no current user, return an error
-const requireAuth = function (req, _res, next) {
-    if (req.user) return next();
-  
-    const err = new Error('Authentication required');
-    err.title = 'Authentication required';
-    err.errors = { message: 'Authentication required' };
-    err.status = 401;
-    return next(err);
-};
+    //The last authentication middleware to add is for requiring a
+    //session user to be authenticated before accessing a route.
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+    // If there is no current user, return an error
+    const requireAuth = function (req, _res, next) {
+        if (req.user) return next();
+
+        const err = new Error('Authentication required');
+        err.title = 'Authentication required';
+        err.errors = { message: 'Authentication required' };
+        err.status = 401;
+        return next(err);
+    }
+
+
+    module.exports = { setTokenCookie, restoreUser, requireAuth };

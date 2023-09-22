@@ -1,33 +1,46 @@
-const express = require('express');
-const { SpotImage, Spot } = require('../../db/models');
+const express = require("express");
 
-const { requireAuth } = require('../../utils/auth');
+const { setTokenCookie, requireAuth } = require("../../utils/auth");
+
+const { User } = require("../../db/models");
+const { SpotImage } = require("../../db/models");
+const { Spot } = require("../../db/models");
+const { Booking } = require("../../db/models");
+
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-//delete a spot image
-router.delete('/:imageId', requireAuth, async(req, res) => {
-    const imageId = req.params.imageId;
-    const userId = req.user.id;
-    
-    const image = await SpotImage.findByPk(imageId, {
+//deletes a spot
+router.delete("/:imageId", async (req, res) => {
+    const userId = req.user.id
+
+    const spotImage = await SpotImage.findByPk(req.params.imageId, {
         include: {
             model: Spot,
-            attributes: ['ownerId']
         }
-    });
+    })
 
-    if(image) {
-        if(image.Spot.ownerId === userId) {
-            await image.destroy();
-
-            return res.status(200).json({ message: "Successfully deleted" });
-        } else {
-            return res.status(403).json({ message: "You are not authorized to delete this spot image" });
-        }
-    } else {
-        return res.status(404).json({ message: "Spot Image couldn't be found" });
+    if(!spotImage) {
+        res.status(404)
+        res.json({
+            "message": "Image couldn't be found"
+        })
     }
-});
+    const spotOwnerId = spotImage.Spot.ownerId
+    if(userId === spotOwnerId) {
+        await spotImage.destroy();
+        res.json(    {
+            "message": "Successfully deleted"
+          })
+    } else {
+        res.status(403)
+        res.json(    {
+            "message": "You do not have permission to delete this spot"
+          })
+    }
+  });
+
 
 module.exports = router;

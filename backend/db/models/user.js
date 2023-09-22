@@ -5,30 +5,32 @@ const { Model, Validator } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // define association here
-      User.hasMany(models.Spot, {
-        foreignKey: 'ownerId',
-        onDelete: 'CASCADE',
-        hooks: true,
-      });
+      User.hasMany(models.Spot, { foreignKey: "ownerId", onDelete: "CASCADE" });
       User.hasMany(models.Booking, {
-        foreignKey: 'userId',
-        onDelete: 'CASCADE',
-        hooks: true,
+        foreignKey: "userId",
+        onDelete: "CASCADE",
       });
       User.hasMany(models.Review, {
-        foreignKey: 'userId',
-        onDelete: 'CASCADE',
-        hooks: true,
-      })
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+      });
     }
   };
 
   User.init(
     {
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [4, 30],
           isNotEmail(value) {
@@ -38,23 +40,10 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [2, 50],
-        }
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [2, 50],
-        }
-      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [3, 256],
           isEmail: true
@@ -67,9 +56,10 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       }
-    }, {
+    },
+    {
       sequelize,
-      modelName: "User",
+      modelName: 'User',
       defaultScope: {
         attributes: {
           exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
