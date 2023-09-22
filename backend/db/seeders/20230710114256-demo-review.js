@@ -27,9 +27,9 @@ module.exports = {
         stars: 5
       },
       {
-        spotId: 4,
-        userId: 1,
-        review: 'Honestly a little pricey, but worth every once in a while',
+        spotId: 1,
+        userId: 4,
+        review: 'Very unique flavors!',
         stars: 4
       },
       {
@@ -39,9 +39,9 @@ module.exports = {
         stars: 2
       },
       {
-        spotId: 1,
-        userId: 4,
-        review: 'Very unique flavors!',
+        spotId: 4,
+        userId: 1,
+        review: 'Honestly a little pricey, but worth every once in a while',
         stars: 4
       },
       {
