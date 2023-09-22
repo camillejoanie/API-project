@@ -1,0 +1,86 @@
+.post-your-review-button {
+    margin-bottom: 20px;
+    background-color: rgb(235, 136, 153);
+    color: white;
+    padding: 10px;
+    width: 170px;
+    border: none;
+    font-family: Andale Mono, monospace;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.post-your-review-button:hover {
+    background-color: lightpink;
+}
+
+.no-review-text {
+    color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
+}
+
+.reviews-div-holder{
+
+  display: flex;
+  flex-direction: column-reverse;
+
+}
+
+.spot-single-review-div{
+
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+    border: 1px solid rgb(235, 136, 153);
+}
+
+
+.spot-single-review-firstname {
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
+    
+}
+
+
+.spot-single-review-created-date {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
+    font-size: 13px;
+
+}
+
+
+
+.spot-single-review-div button {
+    margin-top: 7px
+}
+
+.review-update-button,
+.review-delete-button {
+    margin-right: 7px;
+    background-color: rgb(235, 136, 153);
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.review-update-button:hover,
+.review-delete-button:hover {
+    background-color: lightpink;
+}
+
+.user-update-delete-review {
+    margin-top: 10px;
+}

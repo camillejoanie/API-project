@@ -1,14 +1,14 @@
-// frontend/src/App.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import LandingPage from "./components/LandingPage/LandingPage";
-import SpotDetailPage from "./components/SpotDetailsPage/SpotDetailPage";
-import CreateSpotForm from "./components/CreateNewSpot/CreateSpotForm";
-import ManageSpots from "./components/ManageSpotsPage/ManageSpots";
-import UpdateSpotForm from "./components/UpdateSpotForm/UpdateSpotForm";
+import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import LandingPage from "./components/LandingPage";
+import CreateSpot from "./components/CreateSpot";
+import SpotDetails from "./components/SpotDetails";
+import ManageSpots from "./components/ManageSpots";
+import EditSpot from './components/EditSpot'
 
 function App() {
   const dispatch = useDispatch();
@@ -22,11 +22,21 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/" component={LandingPage}/> 
-          <Route exact path="/spots/create" component={CreateSpotForm} />
-          <Route exact path="/spot/:spotId/update" component={UpdateSpotForm} />
-          <Route path="/spot/:spotId" component={SpotDetailPage} />
-          <Route exact path="/spots/current" component={ManageSpots} />
+          <Route path="/" exact>
+            <LandingPage />
+          </Route>
+          <Route path="/spots/new" exact>
+            <CreateSpot />
+          </Route>
+          <Route path="/spots/current">
+            <ManageSpots />
+          </Route>
+          <Route path="/spots/:spotId/edit">
+            <EditSpot />
+          </Route>
+          <Route path="/spots/:spotId">
+            <SpotDetails />
+          </Route>
         </Switch>
       )}
     </>

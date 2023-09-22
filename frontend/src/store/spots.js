@@ -1,83 +1,203 @@
-// frontend/src/store/spots.js
 import { csrfFetch } from "./csrf";
-import { createSlice } from '@reduxjs/toolkit';
 
-const CREATE_SPOT = "spots/createSpot";
-const REMOVE_DELETED_SPOT = "spots/removeDeletedSpot";
+const GET_SPOTS = "spots/getSpots";
+const ADD_SPOT = "spots/addSpot";
+const GET_SPOT = "spots/getSpot";
+const DISPLAY_USER_SPOTS = "spots/currentUserSpots";
+const EDIT_SPOT = "spots/editSpot"
 
-const createSpotAction = (spot) => ({
-  type: CREATE_SPOT,
-  payload: spot,
-});
 
-const removeDeletedSpotAction = (spotId) => ({
-  type: REMOVE_DELETED_SPOT,
-  payload: spotId,
-});
-
-const spotsSlice = createSlice({
-  name: "spots",
-  initialState: {
-    userSpots: [],
-  },
-  reducers: {
-    setUserSpots(state, action) {
-      state.userSpots = action.payload;
-    },
-  },
-});
-
-export const { setUserSpots } = spotsSlice.actions;
-
-export const fetchUserSpotsAsync = (userId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/users/${userId}/spots`);
-  if (response.ok) {
-    const userSpots = await response.json();
-    dispatch(setUserSpots(userSpots));
-  }
+//get spots action creator
+const getAllSpots = (spots) => {
+  return {
+    type: GET_SPOTS,
+    spots: spots.Spots,
+  };
+};
+//add spot action creator
+export const addSpot = (spot) => {
+  return {
+    type: ADD_SPOT,
+    spot,
+  };
 };
 
-export const createSpot = (spotData) => async (dispatch) => {
-  const response = await csrfFetch("/api/spots", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(spotData),
-  });
-
-  if (response.ok) {
-    const spot = await response.json();
-    dispatch(createSpotAction(spot));
-    return spot;
-  } else {
-    throw new Error("Failed to create spot");
-  }
+//get spot action creator
+export const getSingleSpot = (spot) => {
+  return {
+    type: GET_SPOT,
+    spot,
+  };
 };
 
-export const deleteSpot = (spotId) => async (dispatch) => {
-  await csrfFetch(`/api/spots/${spotId}`, {
-    method: "DELETE",
-  });
-  dispatch(removeDeletedSpotAction(spotId));
+//get current user spots action creator
+export const getAllUserSpots = (spots) => {
+  return {
+    type: DISPLAY_USER_SPOTS,
+    spots: spots.Spots,
+  };
+};
+
+//edit spot action creator
+export const editUserSpot = (spot) => {
+  return {
+    type: EDIT_SPOT,
+    spot
+  };
 }
 
-const initialState = {};
 
-const spotsReducer = (state = initialState, action) => {
+
+//get all spots thunk action creator
+export const getSpots = () => async (dispatch) => {
+  const response = await csrfFetch("/api/spots", {
+    method: "GET",
+  });
+  const data = await response.json();
+
+  dispatch(getAllSpots(data));
+
+  return response;
+};
+
+//create spot thunk creator
+export const writeSpot = (payload) => async (dispatch) => {
+  let {
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewImage,
+  } = payload;
+
+  const spot = {
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+  };
+
+  const response = await csrfFetch("/api/spots", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(spot),
+  });
+  console.log('were here', response)
+  if (response.ok) {
+    const spot = await response.json();
+    console.log(spot)
+    await csrfFetch(`/api/spots/${spot.id}/images`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(previewImage),
+    })
+  if (response.ok) {
+    dispatch(addSpot(spot));
+    return spot;
+  }
+  }
+};
+
+
+
+//get single spot thunk creator
+export const getSpot = (payload) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${payload}`, {
+    method: "GET",
+  });
+  const data = await response.json();
+  dispatch(getSingleSpot(data));
+  return response;
+};
+
+//get user spots thunk creator
+export const getUserSpots = () => async (dispatch) => {
+  const response = await csrfFetch("/api/spots/current", {
+    method: "GET",
+  });
+  const data = await response.json();
+  dispatch(getAllUserSpots(data));
+  return response;
+};
+
+//edit spot thunk creator
+export const editSpot = (payload) => async (dispatch) => {
+  const spotId = payload.id.spotId;
+  const newEditedSpot = payload.spot;
+  const newPreviewImage = payload.previewImage;
+
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newEditedSpot),
+  });
+      if (response.ok) {
+      const spot = await response.json();
+    console.log(spot)
+    dispatch(editUserSpot(spot));
+    return spot;
+  }
+// }
+};
+
+//delete spot thunk action creator
+export const deleteSpot = (payload) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${payload}`, {
+    method: 'DELETE'
+  });
+  if (response.ok) {
+    const spot = await response.json();
+    dispatch(getUserSpots());
+    return spot;
+  }
+}
+
+
+const initialState = {
+  allSpots: {
+    //normalized kvps
+  },
+  singleSpot: {
+    //flattened db info
+  },
+};
+
+const spotReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
-    case CREATE_SPOT:
-      return {
-        ...state,
-        [action.payload.id]: action.payload,
-      };
-
-    case REMOVE_DELETED_SPOT:
-      const { [action.payload]: deletedSpot, ...updatedState } = state;
-      return updatedState;
+    case GET_SPOTS:
+      newState = Object.assign({}, state);
+      newState.allSpots = action.spots;
+      return newState;
+    case ADD_SPOT:
+      newState = Object.assign({}, state);
+      newState.allSpots = action.spot;
+      return newState;
+    case DISPLAY_USER_SPOTS:
+      newState = Object.assign({}, state);
+      let newObject = {}
+      action.spots.forEach(spot => {
+        newObject[spot.id] = spot
+      })
+      newState.allSpots = newObject;
+      return newState;
+    case GET_SPOT:
+      newState = Object.assign({}, state);
+      newState.singleSpot = action.spot;
+      return newState;
     default:
       return state;
   }
 };
 
-export default spotsReducer;
+export default spotReducer;

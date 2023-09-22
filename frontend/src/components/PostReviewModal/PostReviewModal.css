@@ -1,0 +1,58 @@
+.review-form-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 20px 20px 20px;
+    width: 350px;
+    background-color: rgb(243, 236, 242);
+}
+
+.review-form-header {
+    color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
+    font-size: 30px;
+}
+
+.post-review-form-modal {
+    resize: none;
+    width: 100%;
+    height: 130px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(235, 136, 153);
+}
+
+.review-rating-text {
+    color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.heart-rating-buttons {
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+radio {
+    padding-right: 3px;
+}
+
+.review-stars-post-review-modal{
+    display: flex;
+}
+
+.submit-review-button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 200px;
+    color: white;
+    background-color: rgb(235, 136, 153);
+    font-family: Andale Mono, monospace;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-review-button:hover {
+    background-color: lightpink;
+}

@@ -84,3 +84,28 @@ label {
   color: rgb(235, 136, 153);
   font-weight: bold;
 }
+
+.close-button:hover {
+  color: lightpink;
+}
+
+.demo-user {
+  margin-top: 10px;
+  margin-left: 58px;
+  background-color: white;
+  border: 2px solid rgb(235, 136, 153);
+  border-radius: 5px;
+  padding: 10px;
+  color: rgb(235, 136, 153);
+  font-family: Andale Mono, monospace;
+  cursor: pointer;
+}
+
+.demo-user:hover {
+  background-color: lightpink;
+  color: white;
+}
+
+.login-error {
+  color: red;
+}

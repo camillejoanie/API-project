@@ -36,7 +36,7 @@ button.button-container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 30px;
     border: 1px solid rgb(235, 136, 153);
     background-color: white;
@@ -48,10 +48,10 @@ img.hamburger {
     vertical-align: middle;
 }
 
-.fa-user-circle.user-icon:before {
+.circle-profile {
     display: inline-block;
     vertical-align: bottom;
-    font-size: 1.20rem;
+    font-size: 1.25rem;
     margin-left: 5px;
 }
 
@@ -64,7 +64,7 @@ img.hamburger {
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  width: 150px; 
+  width: 160px; 
   display: none; 
   align-items: center;
   color: rgb(235, 136, 153);
@@ -87,6 +87,7 @@ ul li:hover .profile-dropdown {
   border: none;
   color: #dc3545;
   cursor: pointer;
+  margin-left: 34px;
   font-size: 1rem;
   font-weight: bolder;
   font-family: Andale Mono, monospace;
@@ -110,7 +111,33 @@ img.logo {
 
 a:-webkit-any-link {
   text-decoration: none;
-  margin-right: 20px;
+  margin-right: 40px;
   color: rgb(235, 136, 153);
   font-family: Andale Mono, monospace;
+}
+
+.heart-profile-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Add this */
+}
+
+.heart-profile {
+  width: 25px; /* Adjust the width as needed */
+  height: 25px; /* Adjust the height as needed */
+  position: relative; /* Add this */
+  z-index: 1; /* Add this to make the heart image appear behind the user initial */
+}
+
+.user-initial {
+  color: white;
+  font-family: Andale Mono, monospace;
+  font-size: 10px; /* Adjust the font size as needed */
+  margin-left: 9px;
+  margin-top: 7px; /* Adjust the margin as needed */
+  position: absolute; /* Add this */
+  top: 0; /* Adjust the vertical position as needed */
+  left: 0; /* Adjust the horizontal position as needed */
+  z-index: 2; /* Add this to make the user initial appear on top of the heart image */
 }

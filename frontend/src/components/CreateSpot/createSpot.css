@@ -1,0 +1,89 @@
+.create-form-inputBox {
+    display: flex;
+    justify-content: center;
+}
+.create-spot-form {
+
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 25px;
+}
+
+.create-spot-form input {
+    margin: 10px;
+}
+
+.create-spot-form textarea {
+    margin-bottom: 10px;
+}
+
+.create-form-description-textarea textarea {
+    resize: none;
+    width: 100%;
+    height: 150px;
+
+}
+
+.create-form-spot-address {
+    border-bottom: solid black 2px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-form-cit-state-lat-lng {
+    width: 44%;
+}
+
+.create-form-description-textarea {
+    border-bottom: solid black 2px;
+    padding-bottom: 10px;
+}
+
+.create-form-spot-name {
+    border-bottom: solid black 2px;
+    padding-bottom: 10px;
+}
+
+.create-spot-name-field {
+    width: 95%
+}
+
+.create-form-spot-price {
+    border-bottom: solid black 2px;
+    padding-bottom: 10px;
+}
+
+.create-spot-price-field {
+    width: 90%
+}
+
+.create-form-spot-images {
+    border-bottom: solid black 2px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.create-form-spot-images input {
+    width: 95%
+}
+
+
+.button-div {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.create-form-submit-button {
+    width: 100px;
+    background-color: red;
+    color: white;
+
+}
+
+
+.create-form-errors {
+    color: red
+}

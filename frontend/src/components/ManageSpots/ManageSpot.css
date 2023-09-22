@@ -1,0 +1,129 @@
+.all-spots-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 2em;
+    grid-row-gap: 4em;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.manage-spot {
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.manage-spots-heading {
+    margin-left: 30px;
+    margin-bottom: 30px;
+    font-family: Andale Mono, monospace;
+    color: rgb(235, 136, 153); 
+}
+
+.manage-spots-create-button {
+    font-size: 17px;
+    font-family: Andale Mono, monospace;
+    background-color: rgb(235, 136, 153); 
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.manage-spots-create-button:hover {
+    background-color: lightpink;
+}
+
+.manage-spot-image-div {
+    width: 100%;
+    height: 100%;
+}
+
+.manage-spot-image-div img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.manage-spot-name {
+    width: 160px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: bolder;
+}
+
+.manage-spot-name-and-rating {
+    display: flex;
+}
+
+.manage-spot-heart-image {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.manage-spot-rating {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.manage-spot-city-state-price {
+    display: grid;
+    grid-template-columns: 70% 1fr;
+    grid-template-rows: 1fr 1fr ;
+}
+
+
+.manage-spot-city-state-price {
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 100%;
+    height: 30%;
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 13px;
+    color: rgb(235, 136, 153); 
+    font-family: Andale Mono, monospace;
+}
+
+.manage-spot-price{
+    grid-column: 1;
+    grid-row: 2;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.manage-spot-star-rating {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.update-delete-buttons {
+    margin: 8px
+}
+
+.update-delete-buttons button {
+    color: white;
+    background-color: rgb(235, 136, 153); 
+    font-family: Andale Mono, monospace;
+    box-shadow: 2px 2px 2px gray;
+    border: none;
+    font-size: 15px;
+    padding: 5px;
+    width: 70px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.update-delete-buttons button:hover {
+    background-color: lightpink;
+}
+
+.manage-spots-update-button{
+    margin-right: 8px;
+}
