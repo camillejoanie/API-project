@@ -128,87 +128,89 @@ export default function CreateSpot() {
   return (
     <div className="create-form-inputBox">
       <form className="create-spot-form" onSubmit={handleSubmit}>
-        <h1>Create a new Spot</h1>
+        <h1 className="create-spot-header">Create a new Spot</h1>
         <div className="create-form-place-located-question">
           <h2>Where's your place located?</h2>
           <p>
-            Guests will only get your exact address once they booked a
-            reservation.
+            Some guests might be too lazy to Google the address, so please add it!
           </p>
         </div>
         <div className="create-form-spot-address">
-          <label></label>
-          <label></label>
-          <input
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            name="country"
-            placeholder="Country"
-            className="create-form-country-address"
-          ></input>
-          <div className="create-form-errors">{errors.country}</div>
-          <label></label>
-          <label></label>
-          <input
-            type="text"
-            onChange={(e) => setAddress(e.target.value)}
-            value={address}
-            placeholder="Address"
-            name="address"
-            className="create-form-country-address"
-          />
-          <div className="create-form-errors">{errors.address}</div>
-          <div className="city-state-create-form">
-            <label></label>
-            <label></label>
-            <input
-              type="text"
-              onChange={(e) => setCity(e.target.value)}
-              value={city}
-              placeholder="City"
-              name="city"
-              className="create-form-cit-state-lat-lng"
-            />
-            ,<label></label>
-            <label></label>
-            <input
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              name="state"
-              placeholder="State"
-              className="create-form-cit-state-lat-lng"
-            ></input>
-          </div>
-          <div className="create-form-errors">{errors.city}</div>
-          <div className="create-form-errors">{errors.state}</div>
-          <div className="lat-long-create-form">
-            <label></label>
-            <label></label>
-            <input
-              value={lat}
-              onChange={(e) => setLat(e.target.value)}
-              name="lat"
-              placeholder="Latitude"
-              className="create-form-cit-state-lat-lng"
-            ></input>
-            ,<label></label>
-            <label></label>
-            <input
-              value={lng}
-              onChange={(e) => setLng(e.target.value)}
-              name="lng"
-              placeholder="Longitude"
-              className="create-form-cit-state-lat-lng"
-            ></input>
-          </div>
-          <div className="create-form-errors">{errors.lat}</div>
-          <div className="create-form-errors">{errors.lng}</div>
-        </div>
+  <label></label>
+  <label className="address-label">Country</label>
+  <input
+    value={country}
+    onChange={(e) => setCountry(e.target.value)}
+    name="country"
+    placeholder="Country"
+    className="create-form-country-address"
+  ></input>
+  <div className="create-form-errors">{errors.country}</div>
+  <label></label>
+  <label className="address-label">Address</label>
+  <input
+    type="text"
+    onChange={(e) => setAddress(e.target.value)}
+    value={address}
+    placeholder="Address"
+    name="address"
+    className="create-form-country-address"
+  />
+  <div className="create-form-errors">{errors.address}</div>
+  <div className="city-state-create-form">
+    <div className="city-state-lat-lng-labels">
+      <div className="address-label-city">City</div>
+      <div className="address-label-state">State</div>
+    </div>
+    <div className="city-state-inputs">
+      <input
+        type="text"
+        onChange={(e) => setCity(e.target.value)}
+        value={city}
+        placeholder="City"
+        name="city"
+        className="create-form-cit-state-lat-lng"
+      />,
+      <input
+        value={state}
+        onChange={(e) => setState(e.target.value)}
+        name="state"
+        placeholder="State"
+        className="create-form-cit-state-lat-lng"
+      />
+    </div>
+  </div>
+  <div className="create-form-errors">{errors.city}</div>
+  <div className="create-form-errors">{errors.state}</div>
+  <div className="lat-long-create-form">
+    <div className="city-state-lat-lng-labels">
+      <div className="address-label-lat">Latitude</div>
+      <div className="address-label-lng">Longitude</div>
+    </div>
+    <input
+      value={lat}
+      onChange={(e) => setLat(e.target.value)}
+      name="lat"
+      placeholder="Latitude"
+      className="create-form-cit-state-lat-lng"
+    />
+    <label>,</label>
+    <input
+      value={lng}
+      onChange={(e) => setLng(e.target.value)}
+      name="lng"
+      placeholder="Longitude"
+      className="create-form-cit-state-lat-lng"
+    />
+  </div>
+  <div className="create-form-errors">{errors.lat}</div>
+  <div className="create-form-errors">{errors.lng}</div>
+</div>
+
         <div className="create-form-description-textarea">
           <h2>Describe your place to guests</h2>
           <p>
-            Mention the best features of your space, any special amentities like
-            fast wifi or parking, and what you love about the neightboorhood.
+            This is your chance to wow the guests about why your boba is better than others 😎
           </p>
           <textarea
             value={description}

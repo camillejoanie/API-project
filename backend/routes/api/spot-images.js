@@ -12,7 +12,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
-//deletes a spot
+//deletes a spot image
 router.delete("/:imageId", async (req, res) => {
     const userId = req.user.id
 

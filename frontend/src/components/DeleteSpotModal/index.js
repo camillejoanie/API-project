@@ -14,8 +14,15 @@ function DeleteSpotModal(props) {
         closeModal()
     }
 
+    const handleClose = () => {
+        closeModal();
+    };
+
     return (
         <div className="confirm-delete-modal">
+            <button className="close-button" onClick={handleClose}>
+                X
+            </button>
             <h1 className="confirm-delete-modal-heading">Confirm Delete</h1>
             <p className="confirm-delete-modal-text">Are you sure you want to remove this spot from the listings?</p>
             <button className='delete-modal-delete-spot' onClick={handleDelete}>Yes (Delete Spot)</button>

@@ -132,9 +132,11 @@ export const getUserSpots = () => async (dispatch) => {
 
 //edit spot thunk creator
 export const editSpot = (payload) => async (dispatch) => {
-  const spotId = payload.id.spotId;
-  const newEditedSpot = payload.spot;
-  const newPreviewImage = payload.previewImage;
+  // const spotId = payload; //used to be payload.is.spotId
+  // const newEditedSpot = payload.spot;
+  // const newPreviewImage = payload.previewImage;
+  const { spotId, spot: newEditedSpot, previewImage: newPreviewImage } = payload;
+
 
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
@@ -152,15 +154,35 @@ export const editSpot = (payload) => async (dispatch) => {
 
 //delete spot thunk action creator
 export const deleteSpot = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${payload}`, {
-    method: 'DELETE'
-  });
-  if (response.ok) {
-    const spot = await response.json();
-    dispatch(getUserSpots());
-    return spot;
+  try {
+    const response = await csrfFetch(`/api/spots/${payload}`, {
+      method: 'DELETE'
+    });
+
+    if (response.ok) {
+      const spot = await response.json();
+      dispatch(getUserSpots());
+      return spot;
+    } else {
+      console.error('Error deleting spot:', response.statusText);
+      return null;
+    }
+  } catch (error) {
+    console.error('An error occurred:', error.message);
+    return null;
   }
 }
+
+// export const deleteSpot = (payload) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/spots/${payload}`, {
+//     method: 'DELETE'
+//   });
+//   if (response.ok) {
+//     const spot = await response.json();
+//     dispatch(getUserSpots());
+//     return spot;
+//   }
+// }
 
 
 const initialState = {

@@ -28,7 +28,7 @@ function LoginFormModal() {
   };
 
   const handleClose = () => {
-    closeModal(); // Call the closeModal function from your context
+    closeModal();
   };
 
   const loginDemo = (e) => {

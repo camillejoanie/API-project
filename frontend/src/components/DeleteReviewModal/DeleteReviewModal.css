@@ -4,26 +4,45 @@
     align-items: center;
     padding: 20px;
     width: 350px;
+    font-family: Andale Mono, monospace;
+    color: rgb(235, 136, 153);
 }
 
 .confirm-delete-modal-text{
     font-size: 18px;
+    text-align: center;
 }
 
 .delete-modal-delete-Review {
-    background-color: red;
+    background-color: rgb(235, 136, 153);
     color: white;
+    font-family: Andale Mono, monospace;
     width: 100%;
     font-size: 13px;
     height: 35px;
     margin-bottom: 10px;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px 2px gray;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-modal-delete-Review:hover {
+    background-color: lightpink;
 }
 
 .delete-modal-keep-Review {
-    background-color: darkgray;
+    background-color: lightgray;
+    font-family: Andale Mono, monospace;
     width: 100%;
     font-size: 13px;
     height: 35px;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px 2px gray;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-modal-keep-Review:hover {
+    background-color: rgb(235, 232, 232);
 }

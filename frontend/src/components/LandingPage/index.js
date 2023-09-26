@@ -12,6 +12,8 @@ export default function LandingPage() {
 
   const spotsList = Object.values(spots);
 
+  const heartIcon = process.env.PUBLIC_URL + "/images/fullheart.svg";
+
   spotsList.map(spot => {
     if(typeof spot.avgRating === 'string') {
       spot.avgRating = 'New'
@@ -38,7 +40,7 @@ export default function LandingPage() {
               <div className="spot-name">{name}</div>
               {/* <div className="single-spot-star-rating"> */}
                 <img
-                  src={process.env.PUBLIC_URL + `/images/fullHeart.svg`}
+                  src={heartIcon}
                   alt="Heart"
                   className="heart-image"
                 />
