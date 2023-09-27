@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { writeSpot } from "../../store/spots";
 import "./createSpot.css";
 import { useHistory } from "react-router-dom";
-import { add } from "mathjs";
 
 export default function CreateSpot() {
   const [address, setAddress] = useState("");
@@ -91,25 +90,23 @@ export default function CreateSpot() {
     };
 
     setErrors(formErrors);
+
     console.log('pre error test')
     console.log(errors)
-    if (Object.keys(errors).length) {
-      console.log('passed error check')
-      const response = await dispatch(writeSpot(newSpot))
-        .then(async (res) => {
-          if (res && res.id) {
-            console.log('passed backend')
-            history.push(`/spots/${res.id}`);
+    if (Object.keys(formErrors).length === 0) {
+      try {
+        const response = await dispatch(writeSpot(newSpot))
+          // .then(async (res) => {
+          if (response && response.id) {
+            // console.log('passed backend')
+            history.push(`/spots/${response.id}`);
             reset();
           }
-        })
-        .catch((errors) => {
-          console.log('errors passed from backend')
-          if (errors) {
-            // setErrors(errors);
-          }
-        });
+          // })
+      } catch (error) {
+        console.error("Error creating spot", error);
       }
+    }
     };
 
   const reset = () => {

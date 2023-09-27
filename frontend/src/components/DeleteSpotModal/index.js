@@ -27,10 +27,8 @@ function DeleteSpotModal(props) {
             <p className="confirm-delete-modal-text">Are you sure you want to remove this spot from the listings?</p>
             <button className='delete-modal-delete-spot' onClick={handleDelete}>Yes (Delete Spot)</button>
             <button className='delete-modal-keep-spot' onClick={closeModal}>No (Keep Spot)</button>
-
-
         </div>
     )
 }
 
-export default DeleteSpotModal
+export default DeleteSpotModal;

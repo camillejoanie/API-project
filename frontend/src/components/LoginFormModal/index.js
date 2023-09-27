@@ -33,7 +33,7 @@ function LoginFormModal() {
 
   const loginDemo = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.login({ credential: 'Demo', password: 'Demo1234' }))
+    dispatch(sessionActions.login({ credential: 'Demo', password: 'Demodemo' }))
     .then(closeModal)
     history.push('/')
   }

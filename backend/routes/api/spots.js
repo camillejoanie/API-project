@@ -644,12 +644,14 @@ router.delete("/:spotId", async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId);
   const userId = req.user.id
   if(!spot) {
-    res.status(404)
-    res.json({
+    res.status(404).res.json({
       "message": "Spot couldn't be found"
     })
+    return;
   }
-  const spotUserId = spot.ownerId
+
+  const spotUserId = spot.ownerId;
+  
   if(userId === spotUserId) {
       await spot.destroy();
       res.json(    {

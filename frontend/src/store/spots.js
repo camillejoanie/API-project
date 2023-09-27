@@ -4,7 +4,8 @@ const GET_SPOTS = "spots/getSpots";
 const ADD_SPOT = "spots/addSpot";
 const GET_SPOT = "spots/getSpot";
 const DISPLAY_USER_SPOTS = "spots/currentUserSpots";
-const EDIT_SPOT = "spots/editSpot"
+const EDIT_SPOT = "spots/editSpot";
+const DELETE_SPOT = "spots/deleteSpot";
 
 
 //get spots action creator
@@ -46,7 +47,13 @@ export const editUserSpot = (spot) => {
   };
 }
 
-
+//delete spot action creator
+export const deleteSpotAction = (spotId) => {
+  return {
+    type: DELETE_SPOT,
+    spotId,
+  }
+}
 
 //get all spots thunk action creator
 export const getSpots = () => async (dispatch) => {
@@ -101,10 +108,10 @@ export const writeSpot = (payload) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(previewImage),
     })
-  if (response.ok) {
-    dispatch(addSpot(spot));
-    return spot;
-  }
+    if (response.ok) {
+      dispatch(addSpot(spot));
+      return spot;
+    }
   }
 };
 
@@ -153,22 +160,22 @@ export const editSpot = (payload) => async (dispatch) => {
 };
 
 //delete spot thunk action creator
-export const deleteSpot = (payload) => async (dispatch) => {
+export const deleteSpot = (spotId) => async (dispatch) => {
   try {
-    const response = await csrfFetch(`/api/spots/${payload}`, {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
       method: 'DELETE'
     });
 
     if (response.ok) {
-      const spot = await response.json();
-      dispatch(getUserSpots());
-      return spot;
+      // const spot = await response.json();
+      dispatch(deleteSpotAction(spotId));
+      return spotId;
     } else {
-      console.error('Error deleting spot:', response.statusText);
+      console.error('cannot delete spot, ERROR', response.statusText);
       return null;
     }
   } catch (error) {
-    console.error('An error occurred:', error.message);
+    console.error('errorrrrr', error.message);
     return null;
   }
 }
@@ -216,6 +223,10 @@ const spotReducer = (state = initialState, action) => {
     case GET_SPOT:
       newState = Object.assign({}, state);
       newState.singleSpot = action.spot;
+      return newState;
+    case DELETE_SPOT:
+      newState = Object.assign({}, state);
+      delete newState.allSpots[action.spotId];
       return newState;
     default:
       return state;
