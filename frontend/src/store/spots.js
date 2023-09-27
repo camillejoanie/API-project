@@ -170,9 +170,6 @@ export const deleteSpot = (spotId) => async (dispatch) => {
       // const spot = await response.json();
       dispatch(deleteSpotAction(spotId));
       return spotId;
-    } else {
-      console.error('cannot delete spot, ERROR', response.statusText);
-      return null;
     }
   } catch (error) {
     console.error('errorrrrr', error.message);
@@ -180,25 +177,26 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   }
 }
 
-// export const deleteSpot = (payload) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/spots/${payload}`, {
-//     method: 'DELETE'
-//   });
-//   if (response.ok) {
-//     const spot = await response.json();
-//     dispatch(getUserSpots());
-//     return spot;
+// export const deleteSpot = (id, spotId) => async (dispatch) => {
+//   try {
+//     const response = await csrfFetch(`/api/spots/${id}`, {
+//       method: 'DELETE'
+//     });
+//     if (response.ok) {
+//       const spot = await response.json();
+//       const waiting = await dispatch(deleteSpotAction(spotId))
+//       const stillWaiting = await dispatch(getSpot(spotId))
+//       return spot;
+//     }
+//   } catch (error) {
+//       console.error("error deleting the spot", error);
+//       throw error;
 //   }
 // }
 
-
 const initialState = {
-  allSpots: {
-    //normalized kvps
-  },
-  singleSpot: {
-    //flattened db info
-  },
+  allSpots: {},
+  singleSpot: {},
 };
 
 const spotReducer = (state = initialState, action) => {
@@ -225,8 +223,10 @@ const spotReducer = (state = initialState, action) => {
       newState.singleSpot = action.spot;
       return newState;
     case DELETE_SPOT:
+      console.log("DELETING SPOTTTT", action.spotId);
       newState = Object.assign({}, state);
       delete newState.allSpots[action.spotId];
+      console.log("DELETE SUCCESSFUL?", newState);
       return newState;
     default:
       return state;

@@ -5,13 +5,18 @@ import './DeleteSpotModal.css'
 
 
 function DeleteSpotModal(props) {
-    const id = props.props
+    const id = props.props;
     const { closeModal } = useModal();
     const dispatch = useDispatch()
 
     const handleDelete = async (e) => {
-        dispatch(deleteSpot(id));
-        closeModal()
+        try {
+            await dispatch(deleteSpot(id));
+            console.log("AHHHHHHHHHHHHHHHHHH", id);
+            closeModal();
+        } catch (error) {
+            console.error("trouble deleting spot", error);
+        }        
     }
 
     const handleClose = () => {

@@ -5,7 +5,7 @@ import './DeleteReviewModal.css'
 
 
 function DeleteReviewModal(props) {
-    const { id, spotId } = props.props
+    const { id, spotId } = props.props;
     const { closeModal } = useModal();
     const dispatch = useDispatch()
 

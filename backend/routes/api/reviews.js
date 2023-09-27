@@ -192,6 +192,7 @@ router.post('/:reviewId/images', validateReviewImage, async (req, res) => {
 //deletes a review
 router.delete("/:reviewId", async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId);
+    console.log("AHHHHH", review);
     const userId = req.user.id
     if(!review) {
       res.status(404)

@@ -642,7 +642,10 @@ router.put("/:spotId", validateSpot, async (req, res) => {
 //deletes a spot
 router.delete("/:spotId", async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId);
-  const userId = req.user.id
+  const userId = 2; //req.user.id
+
+  console.log("*******SPOT*****", {spot, userId});
+
   if(!spot) {
     res.status(404).res.json({
       "message": "Spot couldn't be found"
@@ -651,8 +654,9 @@ router.delete("/:spotId", async (req, res) => {
   }
 
   const spotUserId = spot.ownerId;
-  
+
   if(userId === spotUserId) {
+    console.log("anything");
       await spot.destroy();
       res.json(    {
           "message": "Successfully deleted"
