@@ -11,9 +11,11 @@ function DeleteSpotModal(props) {
 
     const handleDelete = async (e) => {
         try {
-            await dispatch(deleteSpot(id));
-            console.log("AHHHHHHHHHHHHHHHHHH", id);
-            closeModal();
+            await dispatch(deleteSpot(id))
+            // console.log("AHHHHHHHHHHHHHHHHHH", id);
+            .then (
+                closeModal
+            )
         } catch (error) {
             console.error("trouble deleting spot", error);
         }        

@@ -118,8 +118,8 @@ export const writeSpot = (payload) => async (dispatch) => {
 
 
 //get single spot thunk creator
-export const getSpot = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${payload}`, {
+export const getSpot = (spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "GET",
   });
   const data = await response.json();

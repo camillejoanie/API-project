@@ -21,15 +21,13 @@ function HeartRating({ onChange, value }) {
     onChange(newRating);
   };
 
-  // Function to render heart icons
   const renderHeartIcons = () => {
-    const maxRating = 5; // The maximum rating
+    const maxRating = 5;
     const heartIcons = [];
 
     for (let i = 0; i < maxRating; i++) {
       const heartType = i < rating ? 'fullheart' : 'emptyheart';
 
-      // Attach a click event handler to each heart
       heartIcons.push(
         <img
           key={i}

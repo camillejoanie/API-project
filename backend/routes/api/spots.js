@@ -642,7 +642,7 @@ router.put("/:spotId", validateSpot, async (req, res) => {
 //deletes a spot
 router.delete("/:spotId", async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId);
-  const userId = 2; //req.user.id
+  const userId = req.user.id;
 
   console.log("*******SPOT*****", {spot, userId});
 

@@ -328,8 +328,8 @@ export default function EditSpot() {
       city,
       state,
       country,
-      lat,
-      lng,
+      lat: 1,
+      lng: 1,
       name,
       description,
       price,
@@ -340,8 +340,7 @@ export default function EditSpot() {
     const response = await dispatch(editSpot({ spotId, spot: editedSpot, previewImage }))
       .then(async (res) => {
         if (res) {
-          // Navigate to the spot details page
-          history.push(`/spots/${res.id}`);
+          history.push(`/spots/${res.id}`); //this navigates it to the spot page
         }
       })
       .catch(async (res) => {

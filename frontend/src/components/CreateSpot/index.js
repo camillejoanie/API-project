@@ -29,7 +29,7 @@ export default function CreateSpot() {
     let formErrors = {};
 
     if (!address) {
-      formErrors = { ...formErrors, address: "Streed address is required" };
+      formErrors = { ...formErrors, address: "Street address is required" };
     }
     if (!country) {
       formErrors = { ...formErrors, country: "Country is required" };
