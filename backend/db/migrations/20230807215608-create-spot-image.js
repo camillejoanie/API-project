@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Bookings', {
+    await queryInterface.createTable('SpotImages', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,20 +17,18 @@ module.exports = {
       spotId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'Spots'},
+        references: {
+          model: 'Spots'
+        },
+        onDelete: 'CASCADE',
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {model: 'Users'}
-      },
-      startDate: {
-        type: Sequelize.DATE,
+      url: {
+        type: Sequelize.STRING,
         allowNull: false
       },
-      endDate: {
-        type: Sequelize.DATE,
-        allowNull: false
+      preview: {
+        type: Sequelize.BOOLEAN,
+        defaultVaue: true
       },
       createdAt: {
         allowNull: false,
@@ -45,7 +43,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Bookings";
+    options.tableName = "SpotImages";
     await queryInterface.dropTable(options);
   }
 };

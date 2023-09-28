@@ -13,10 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Booking, {
         foreignKey: "userId",
         onDelete: "CASCADE",
+        hooks: true,
       });
       User.hasMany(models.Review, {
         foreignKey: "userId",
         onDelete: "CASCADE",
+        hooks: true,
       });
     }
   };
@@ -26,10 +28,16 @@ module.exports = (sequelize, DataTypes) => {
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [2, 50],
+        }
       },
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [2, 50],
+        }
       },
       username: {
         type: DataTypes.STRING,
