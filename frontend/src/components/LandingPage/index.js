@@ -23,7 +23,7 @@ export default function LandingPage() {
 
   const landingPage = spotsList.map(
     ({ id, previewImage, city, state, price, avgRating, name }) => (
-      <div key={id}>
+      <div key={id} className="single-spot-container">
         <div className="single-spot">
           <Link to={`/spots/${id}`}>
             <div className="single-spot-image-div">
@@ -69,7 +69,7 @@ export default function LandingPage() {
   if (!spots) return null;
   return (
     <div className="all-Spots">
-      <div className="all-spots-container">
+      <div className="all-spots-containers">
         {landingPage}
       </div>
     </div>
