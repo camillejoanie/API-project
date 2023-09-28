@@ -5,7 +5,7 @@ import './DeleteReviewModal.css'
 
 
 function DeleteReviewModal(props) {
-    const { id, spotId } = props.props
+    const { id, spotId } = props.props;
     const { closeModal } = useModal();
     const dispatch = useDispatch()
 
@@ -14,8 +14,15 @@ function DeleteReviewModal(props) {
         closeModal()
     }
 
+    const handleClose = () => {
+        closeModal();
+    };
+
     return (
         <div className="confirm-delete-modal">
+            <button className="close-button" onClick={handleClose}>
+                X
+            </button>
             <h1 className="confirm-delete-modal-heading">Confirm Delete</h1>
             <h2 className="confirm-delete-modal-text">Are you sure you want to delete this Review?</h2>
             <button className='delete-modal-delete-Review' onClick={handleDelete}>Yes (Delete Review)</button>

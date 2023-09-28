@@ -1,17 +1,17 @@
 /* frontend/src/components/Navigation/Navigation.css */
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgb(243, 236, 242);
-    z-index: 4;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(243, 236, 242);
+  z-index: 4;
 }
 
 ul li {
@@ -32,27 +32,27 @@ ul li {
 }
 
 button.button-container {
-    margin-left: -30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 8px 15px;
-    border-radius: 30px;
-    border: 1px solid rgb(235, 136, 153);
-    background-color: white;
+  margin-left: -30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 8px 15px;
+  border-radius: 30px;
+  border: 1px solid rgb(235, 136, 153);
+  background-color: white;
 }
 
 img.hamburger {
-    width: 20px;
-    display: inline-block;
-    vertical-align: middle;
+  width: 20px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .circle-profile {
-    display: inline-block;
-    vertical-align: bottom;
-    font-size: 1.25rem;
-    margin-left: 5px;
+  display: inline-block;
+  vertical-align: bottom;
+  font-size: 1.25rem;
+  margin-left: 5px;
 }
 
 /* dropdown styles */
@@ -94,8 +94,8 @@ ul li:hover .profile-dropdown {
 }
 
 img.logo {
-    max-width: 220px;
-    max-height: 60px;
+  max-width: 220px;
+  max-height: 60px;
 }
 
 .nav-right {
@@ -106,7 +106,7 @@ img.logo {
 .nav-profile-create {
   display: flex;
   align-items: center;
-  gap: 20px; /* Adjust this value as needed */
+  gap: 20px;
 }
 
 a:-webkit-any-link {
@@ -120,24 +120,28 @@ a:-webkit-any-link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Add this */
+  position: relative;
 }
 
 .heart-profile {
-  width: 25px; /* Adjust the width as needed */
-  height: 25px; /* Adjust the height as needed */
-  position: relative; /* Add this */
-  z-index: 1; /* Add this to make the heart image appear behind the user initial */
+  width: 25px;
+  height: 25px;
+  position: relative;
+  z-index: 1; 
 }
 
 .user-initial {
   color: white;
   font-family: Andale Mono, monospace;
-  font-size: 10px; /* Adjust the font size as needed */
+  font-size: 10px; 
   margin-left: 9px;
-  margin-top: 7px; /* Adjust the margin as needed */
-  position: absolute; /* Add this */
-  top: 0; /* Adjust the vertical position as needed */
-  left: 0; /* Adjust the horizontal position as needed */
-  z-index: 2; /* Add this to make the user initial appear on top of the heart image */
+  margin-top: 7px;
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  z-index: 2; 
+}
+
+.user-info-in-profile-button {
+  border-bottom: 1px solid rgb(235, 136, 153);
 }

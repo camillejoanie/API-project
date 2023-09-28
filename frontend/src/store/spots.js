@@ -4,7 +4,8 @@ const GET_SPOTS = "spots/getSpots";
 const ADD_SPOT = "spots/addSpot";
 const GET_SPOT = "spots/getSpot";
 const DISPLAY_USER_SPOTS = "spots/currentUserSpots";
-const EDIT_SPOT = "spots/editSpot"
+const EDIT_SPOT = "spots/editSpot";
+const DELETE_SPOT = "spots/deleteSpot";
 
 
 //get spots action creator
@@ -46,7 +47,13 @@ export const editUserSpot = (spot) => {
   };
 }
 
-
+//delete spot action creator
+export const deleteSpotAction = (spotId) => {
+  return {
+    type: DELETE_SPOT,
+    spotId,
+  }
+}
 
 //get all spots thunk action creator
 export const getSpots = () => async (dispatch) => {
@@ -101,18 +108,18 @@ export const writeSpot = (payload) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(previewImage),
     })
-  if (response.ok) {
-    dispatch(addSpot(spot));
-    return spot;
-  }
+    if (response.ok) {
+      dispatch(addSpot(spot));
+      return spot;
+    }
   }
 };
 
 
 
 //get single spot thunk creator
-export const getSpot = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${payload}`, {
+export const getSpot = (spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "GET",
   });
   const data = await response.json();
@@ -132,9 +139,11 @@ export const getUserSpots = () => async (dispatch) => {
 
 //edit spot thunk creator
 export const editSpot = (payload) => async (dispatch) => {
-  const spotId = payload.id.spotId;
-  const newEditedSpot = payload.spot;
-  const newPreviewImage = payload.previewImage;
+  // const spotId = payload; //used to be payload.is.spotId
+  // const newEditedSpot = payload.spot;
+  // const newPreviewImage = payload.previewImage;
+  const { spotId, spot: newEditedSpot, previewImage: newPreviewImage } = payload;
+
 
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
@@ -151,25 +160,43 @@ export const editSpot = (payload) => async (dispatch) => {
 };
 
 //delete spot thunk action creator
-export const deleteSpot = (payload) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${payload}`, {
-    method: 'DELETE'
-  });
-  if (response.ok) {
-    const spot = await response.json();
-    dispatch(getUserSpots());
-    return spot;
+export const deleteSpot = (spotId) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+      method: 'DELETE'
+    });
+
+    if (response.ok) {
+      // const spot = await response.json();
+      dispatch(deleteSpotAction(spotId));
+      return spotId;
+    }
+  } catch (error) {
+    console.error('errorrrrr', error.message);
+    return null;
   }
 }
 
+// export const deleteSpot = (id, spotId) => async (dispatch) => {
+//   try {
+//     const response = await csrfFetch(`/api/spots/${id}`, {
+//       method: 'DELETE'
+//     });
+//     if (response.ok) {
+//       const spot = await response.json();
+//       const waiting = await dispatch(deleteSpotAction(spotId))
+//       const stillWaiting = await dispatch(getSpot(spotId))
+//       return spot;
+//     }
+//   } catch (error) {
+//       console.error("error deleting the spot", error);
+//       throw error;
+//   }
+// }
 
 const initialState = {
-  allSpots: {
-    //normalized kvps
-  },
-  singleSpot: {
-    //flattened db info
-  },
+  allSpots: {},
+  singleSpot: {},
 };
 
 const spotReducer = (state = initialState, action) => {
@@ -194,6 +221,12 @@ const spotReducer = (state = initialState, action) => {
     case GET_SPOT:
       newState = Object.assign({}, state);
       newState.singleSpot = action.spot;
+      return newState;
+    case DELETE_SPOT:
+      console.log("DELETING SPOTTTT", action.spotId);
+      newState = Object.assign({}, state);
+      delete newState.allSpots[action.spotId];
+      console.log("DELETE SUCCESSFUL?", newState);
       return newState;
     default:
       return state;

@@ -9,10 +9,9 @@ export default function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const singleSpot = useSelector((state) => state.spots.singleSpot);
-  console.log("AHHHHHHHHHH", singleSpot);
+  // console.log("AHHHHHHHHHH", singleSpot);
 
   const fullHeart = process.env.PUBLIC_URL + "/images/fullheart.svg";
-  const halfHeart = process.env.PUBLIC_URL + "/images/emptyheart.svg";
 
   useEffect(() => {
     dispatch(getSpot(spotId));

@@ -5,25 +5,37 @@ import './DeleteSpotModal.css'
 
 
 function DeleteSpotModal(props) {
-    const id = props.props
+    const id = props.props;
     const { closeModal } = useModal();
     const dispatch = useDispatch()
 
     const handleDelete = async (e) => {
-        dispatch(deleteSpot(id));
-        closeModal()
+        try {
+            await dispatch(deleteSpot(id))
+            // console.log("AHHHHHHHHHHHHHHHHHH", id);
+            .then (
+                closeModal
+            )
+        } catch (error) {
+            console.error("trouble deleting spot", error);
+        }        
     }
+
+    const handleClose = () => {
+        closeModal();
+    };
 
     return (
         <div className="confirm-delete-modal">
+            <button className="close-button" onClick={handleClose}>
+                X
+            </button>
             <h1 className="confirm-delete-modal-heading">Confirm Delete</h1>
             <p className="confirm-delete-modal-text">Are you sure you want to remove this spot from the listings?</p>
             <button className='delete-modal-delete-spot' onClick={handleDelete}>Yes (Delete Spot)</button>
             <button className='delete-modal-keep-spot' onClick={closeModal}>No (Keep Spot)</button>
-
-
         </div>
     )
 }
 
-export default DeleteSpotModal
+export default DeleteSpotModal;

@@ -28,12 +28,12 @@ function LoginFormModal() {
   };
 
   const handleClose = () => {
-    closeModal(); // Call the closeModal function from your context
+    closeModal();
   };
 
   const loginDemo = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.login({ credential: 'Demo', password: 'Demo1234' }))
+    dispatch(sessionActions.login({ credential: 'Demo', password: 'Demodemo' }))
     .then(closeModal)
     history.push('/')
   }
