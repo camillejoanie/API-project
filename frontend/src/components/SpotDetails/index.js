@@ -19,6 +19,17 @@ export default function SpotDetails() {
 
   if (!singleSpot.id) return null;
 
+  // const { imageUrls } = location.state || {};
+
+  // const renderedImages = imageUrls?.map((imageUrl, index) => (
+  //   <img
+  //     key={index}
+  //     className={`spot-details-image-${index}`}
+  //     src={imageUrl || "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"}
+  //     alt={`boba pic ${index + 1}`}
+  //   />
+  // ));
+
   let spotImages = [];
   singleSpot.SpotImages.forEach((image) => {
     spotImages.push(image);

@@ -12,7 +12,9 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-  const history = useHistory()
+  const history = useHistory();
+
+  const heartIcon = process.env.PUBLIC_URL + "/images/fullheart.svg";
 
   const openMenu = () => {
     if (showMenu) return;
@@ -55,7 +57,7 @@ function ProfileButton({ user }) {
         {user ? (
           <div className="heart-profile-icon">
             <img
-              src={process.env.PUBLIC_URL + `/images/fullHeart.svg`}
+              src={heartIcon}
               alt="Heart"
               className="heart-profile"
             />

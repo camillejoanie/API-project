@@ -9,17 +9,21 @@ export default function CreateSpot() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  const [lat, setLat] = useState(34);
+  const [lng, setLng] = useState(833);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("");
+  // const [imageUrls, setImageUrls] = useState([]);
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [image4, setImage4] = useState("");
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
-
 
   useEffect(() => {}, [errors]);
 
@@ -56,22 +60,32 @@ export default function CreateSpot() {
       formErrors = { ...formErrors, price: "Price is required" };
     }
 
-    const isImage = (previewImage) => {
+    const isImage = (url) => {
       return (
-        previewImage &&
-        (previewImage.endsWith(".jpeg") ||
-          previewImage.endsWith(".jpg") ||
-          previewImage.endsWith(".gif") ||
-          previewImage.endsWith(".png"))
+        url &&
+        (url.endsWith(".jpeg") ||
+          url.endsWith(".jpg") ||
+          url.endsWith(".gif") ||
+          url.endsWith(".png"))
       );
     };
-    if (!previewImage || !isImage(previewImage)) {
+
+    if (!isImage(previewImage)) {
       formErrors = {
         ...formErrors,
         previewImage:
-          "Preview Image is required and must an image file (.jpeg, jpg, .gif, .png)",
+          "Preview Image is required and must be an image file (.jpeg, .jpg, .gif, .png)",
       };
     }
+
+    // const images = [...imageUrls].filter((url) => isImage(url));
+
+    // if (images.length === 0) {
+    //   formErrors = {
+    //     ...formErrors,
+    //     imageUrls: "At least one valid image URL is required",
+    //   };
+    // }
 
     const newSpot = {
       address,
@@ -85,29 +99,35 @@ export default function CreateSpot() {
       price,
       previewImage: {
         url: previewImage,
-        preview: true,
+        preview: true
+      },
+      image1: {
+        url: image1,
+        preview: false
+      },
+      image2: {
+        url: image2,
+        preview: false
+      },
+      image3: {
+        url: image3,
+        preview: false
+      },
+      image4: {
+        url: image4,
+        preview: false
       },
     };
 
     setErrors(formErrors);
 
-    console.log('pre error test')
-    console.log(errors)
     if (Object.keys(formErrors).length === 0) {
-      try {
-        const response = await dispatch(writeSpot(newSpot))
-          // .then(async (res) => {
-          if (response && response.id) {
-            // console.log('passed backend')
-            history.push(`/spots/${response.id}`);
-            reset();
-          }
-          // })
-      } catch (error) {
-        console.error("Error creating spot", error);
+      const response = await dispatch(writeSpot(newSpot));
+      if (response && response.id) {
+        history.push(`/spots/${response.id}`);
       }
     }
-    };
+  };
 
   const reset = () => {
     setAddress("");
@@ -120,6 +140,10 @@ export default function CreateSpot() {
     setDescription("");
     setPrice("");
     setPreviewImage("");
+    setImage1("");
+    setImage2("");
+    setImage3("");
+    setImage4("");
   };
 
   return (
@@ -252,15 +276,16 @@ export default function CreateSpot() {
           <h2>Liven up your spot with photos</h2>
           <p>Submit a link to at least one photo to publish your spot.</p>
           <input
-            name="previewImage"
-            placeholder="Preview Image URL"
-            onChange={(e) => setPreviewImage(e.target.value)}
-          ></input>
-          <label className="create-form-errors">{errors.previewImage}</label>
-          <input name="image1" placeholder="Image URL"></input>
-          <input name="image2" placeholder="Image URL"></input>
-          <input name="image3" placeholder="Image URL"></input>
-          <input name="image4" placeholder="Image URL"></input>
+          value={previewImage}
+          placeholder="Preview Image URL"
+          onChange={(e) => setPreviewImage(e.target.value)}
+        ></input>
+        <label className="create-form-errors">{errors.previewImage}</label>
+        <input value={image1} placeholder="Image URL" onChange={(e) => setImage1(e.target.value)} />
+        <input value={image2} placeholder="Image URL" onChange={(e) => setImage2(e.target.value)} />
+        <input value={image3} placeholder="Image URL" onChange={(e) => setImage3(e.target.value)} />
+        <input value={image4} placeholder="Image URL" onChange={(e) => setImage4(e.target.value)} />
+
         </div>
         <div className="button-div">
           <button className="create-form-submit-button" type="submit">

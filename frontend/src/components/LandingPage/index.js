@@ -32,7 +32,7 @@ export default function LandingPage() {
                   previewImage ||
                   "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                 }
-                alt="house you may want to rent"
+                alt="sorry picture not available"
                 title={name}
               />
             </div>

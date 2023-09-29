@@ -14,7 +14,7 @@ function PostReviewModal(props) {
   const dispatch = useDispatch();
 
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState('');
+  const [stars, setStars] = useState("");
   const [errors, setErrors] = useState({});
 
   let isDisabled = false;
@@ -47,7 +47,7 @@ function PostReviewModal(props) {
   };
 
   const handleClose = () => {
-    closeModal(); // Call the closeModal function from your context
+    closeModal();
   };
 
   const reset = () => {
@@ -55,7 +55,7 @@ function PostReviewModal(props) {
     setStars("");
   };
 
-  console.log(stars);
+  // console.log(stars);
 
   return (
     <div className="review-form-modal">
