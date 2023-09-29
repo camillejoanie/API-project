@@ -5,6 +5,7 @@ const ADD_SPOT = "spots/addSpot";
 const GET_SPOT = "spots/getSpot";
 const DISPLAY_USER_SPOTS = "spots/currentUserSpots";
 const EDIT_SPOT = "spots/editSpot";
+// const GET_SPOT_IMAGES = "spots/getSpotImages"
 const DELETE_SPOT = "spots/deleteSpot";
 
 
@@ -47,6 +48,12 @@ export const editUserSpot = (spot) => {
   };
 }
 
+// //get spot images action creator
+// export const spotImagesAction = (spotId, images) => ({
+//   type: GET_SPOT_IMAGES,
+//   payload: { spotId, images },
+// });
+
 //delete spot action creator
 export const deleteSpotAction = (spotId) => {
   return {
@@ -80,6 +87,10 @@ export const writeSpot = (payload) => async (dispatch) => {
     description,
     price,
     previewImage,
+    image1,
+    image2,
+    image3,
+    image4
   } = payload;
 
   const spot = {
@@ -94,24 +105,29 @@ export const writeSpot = (payload) => async (dispatch) => {
     price,
   };
 
+  const images = [previewImage, image1, image2, image3, image4]
+
   const response = await csrfFetch("/api/spots", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(spot),
   });
-  console.log('were here', response)
+
   if (response.ok) {
     const spot = await response.json();
-    console.log(spot)
-    await csrfFetch(`/api/spots/${spot.id}/images`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(previewImage),
-    })
-    if (response.ok) {
-      dispatch(addSpot(spot));
-      return spot;
+    for( let i = 0; i < images.length; i++) {
+      const image = images[i];
+      if(image) {
+        await csrfFetch(`/api/spots/${spot.id}/images`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(image),
+        })
+      }
     }
+    
+    dispatch(addSpot(spot));
+    return spot;
   }
 };
 
@@ -159,6 +175,17 @@ export const editSpot = (payload) => async (dispatch) => {
 // }
 };
 
+// //get spot images thunk action creator
+// export const getSpotImages = (spotId) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/spots/${spotId}/images`);
+//   if (response.ok) {
+//     const data = await response.json();
+//     dispatch(spotImagesAction(spotId, data.images));
+//   } else {
+//     throw new Error("couldn't get spot images")
+//   }
+// }
+
 //delete spot thunk action creator
 export const deleteSpot = (spotId) => async (dispatch) => {
   try {
@@ -197,6 +224,7 @@ export const deleteSpot = (spotId) => async (dispatch) => {
 const initialState = {
   allSpots: {},
   singleSpot: {},
+  // spotImages: {}
 };
 
 const spotReducer = (state = initialState, action) => {
@@ -222,6 +250,13 @@ const spotReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.singleSpot = action.spot;
       return newState;
+    // case GET_SPOT_IMAGES:
+    //   newState = Object.assign({}, state);
+    //   // const { spotId, images } = action.payload;
+    //   newState.spotImages = {
+    //     ...state.spotImages,
+    //     [action.payload.spotId]: action.payload.images,
+    //   }
     case DELETE_SPOT:
       console.log("DELETING SPOTTTT", action.spotId);
       newState = Object.assign({}, state);

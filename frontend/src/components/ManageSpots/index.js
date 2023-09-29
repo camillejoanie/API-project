@@ -11,7 +11,9 @@ import { useHistory } from "react-router-dom";
 export default function ManageSpots() {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots.allSpots);
-  const history = useHistory()
+  const history = useHistory();
+
+  const heartIcon = process.env.PUBLIC_URL + "/images/fullheart.svg";
 
   let spotsList = Object.values(spots)
 
@@ -62,7 +64,7 @@ export default function ManageSpots() {
                         previewImage ||
                         "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                       }
-                      alt="house you may want to rent"
+                      alt="sorry picture not available"
                     />
                   </div>
                   <div className="manage-spot-name-and-rating">
@@ -71,7 +73,7 @@ export default function ManageSpots() {
                     </div>
                     {/* <div classname="manage-spot-star-rating"> */}
                       <img
-                        src={process.env.PUBLIC_URL + `/images/fullHeart.svg`}
+                        src={heartIcon}
                         alt="Heart"
                         className="manage-spot-heart-image"
                       />
