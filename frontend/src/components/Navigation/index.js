@@ -17,7 +17,7 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </li>
         <div className="nav-right">
-          {sessionUser ? <Link to="/spots/new">Book Out Your Boba</Link> : null}
+          {sessionUser ? <Link to="/spots/new" className="create-link">Book Out Your Boba</Link> : null}
           {isLoaded && (
             <li className="nav-profile-create">
               <ProfileButton user={sessionUser} />

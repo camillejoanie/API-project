@@ -58,7 +58,7 @@ export default function ManageSpots() {
         </Link>
       </div>
 
-      <div className="all-spots-container">
+      <div className="manage-all-spots-container">
         {spotsList.map(
           ({ id, previewImage, name, city, state, price, avgRating }) => (
             <div key={id}>
