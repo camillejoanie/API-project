@@ -21,6 +21,7 @@ export default function CreateSpot() {
   const [image3, setImage3] = useState("");
   const [image4, setImage4] = useState("");
   const [errors, setErrors] = useState({});
+  const [priceError, setPriceError] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -29,7 +30,9 @@ export default function CreateSpot() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({})
+    setErrors({});
+    setPriceError("");
+
     let formErrors = {};
 
     if (!address) {
@@ -50,8 +53,11 @@ export default function CreateSpot() {
     if (!lng) {
       formErrors = { ...formErrors, lng: "Longitude is required" };
     }
-    if (!description) {
-      formErrors = { ...formErrors, description: "Description is required" };
+    if (!description || description.length < 30) {
+      formErrors = {
+        ...formErrors,
+        description: "Description is required and must be at least 30 characters",
+      };
     }
     if (!name) {
       formErrors = { ...formErrors, name: "Name is required" };
@@ -76,6 +82,12 @@ export default function CreateSpot() {
         previewImage:
           "Preview Image is required and must be an image file (.jpeg, .jpg, .gif, .png)",
       };
+    }
+
+    const priceValue = parseInt(price, 10);
+    if (isNaN(priceValue) || !Number.isInteger(priceValue)) {
+      setPriceError("Price must be an integer.");
+      return;
     }
 
     // const images = [...imageUrls].filter((url) => isImage(url));
@@ -153,7 +165,7 @@ export default function CreateSpot() {
         <div className="create-form-place-located-question">
           <h2>Where's your place located?</h2>
           <p>
-            Some guests might be too lazy to Google the address, so please add it!
+            Guests will only get your exact address once they booked a reservation. (Unless they Google it)
           </p>
         </div>
         <div className="create-form-spot-address">
@@ -231,7 +243,7 @@ export default function CreateSpot() {
         <div className="create-form-description-textarea">
           <h2>Describe your place to guests</h2>
           <p>
-            This is your chance to wow the guests about why your boba is better than others 😎
+            Mention the best features of your space, this is your chance to wow the guests about why your boba is better than others 😎
           </p>
           <textarea
             value={description}
@@ -244,8 +256,7 @@ export default function CreateSpot() {
         <div className="create-form-spot-name">
           <h2>Create a title for your spot</h2>
           <p>
-            Catch guests' attention with a spot title that highlights what makes
-            your place special.
+            Name of your boba spot. The punnier the better.
           </p>
           <input
             className="create-spot-name-field"
@@ -257,21 +268,24 @@ export default function CreateSpot() {
           <label className="create-form-errors">{errors.name}</label>
         </div>
         <div className="create-form-spot-price">
-          <h2>Set a base price for your spot</h2>
-          <p>
-            Competitive pricing can help your listing stand out and rank higher
-            in search results.
-          </p>
-          <label>$</label>
-          <input
-            className="create-spot-price-field"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            name="price"
-            placeholder="Price per night (USD)"
-          ></input>
-          <label className="create-form-errors">{errors.price}</label>
-        </div>
+  <h2>Set a base price for your spot</h2>
+  <p>
+    Competitive pricing can help your listing stand out and rank higher
+    in search results.
+  </p>
+  <label>$</label>
+  <input
+    className="create-spot-price-field"
+    value={price}
+    onChange={(e) => {
+      setPrice(e.target.value);
+      setPriceError(""); // Clear price error when user edits the input
+    }}
+    name="price"
+    placeholder="Price per night (USD)"
+  ></input>
+  <label className="create-form-errors">{errors.price || priceError}</label>
+</div>
         <div className="create-form-spot-images">
           <h2>Liven up your spot with photos</h2>
           <p>Submit a link to at least one photo to publish your spot.</p>

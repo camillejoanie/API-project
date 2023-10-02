@@ -31,7 +31,7 @@
 .spot-images {
     display: grid;
     grid-template-columns: 575px 175px 175px;
-    grid-template-rows: 175px 175px;
+    grid-template-rows: 250px 250px;
     row-gap: 5px;
     column-gap: 5px;
     margin: 40px;

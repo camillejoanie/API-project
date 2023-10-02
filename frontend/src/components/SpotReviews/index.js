@@ -36,12 +36,14 @@ export default function SpotReviews() {
         {currentUser && isOwner && <></>}
         {currentUser && currentUserId && !isOwner && (
           <>
-            <button className="post-your-review-button">
-              <OpenModalMenuItem
-                itemText="Post Your Review"
-                modalComponent={<PostReviewModal props={props} />}
-              />
-            </button>
+            {!isOwner && ( // Check if the user is NOT the owner
+              <button className="post-your-review-button">
+                <OpenModalMenuItem
+                  itemText="Post Your Review"
+                  modalComponent={<PostReviewModal props={props} />}
+                />
+              </button>
+            )}
             <div className="no-review-text">Be the first to post a review! ☺</div>
           </>
         )}
@@ -55,12 +57,14 @@ export default function SpotReviews() {
         {currentUser && typeof currentUserId === "null" && isOwner && <></>}
         {currentUser && hasAReview === undefined && (
           <>
-            <button className="post-your-review-button">
-              <OpenModalMenuItem
-                itemText="Post Your Review"
-                modalComponent={<PostReviewModal props={props} />}
-              />
-            </button>
+            {!isOwner && ( // Check if the user is NOT the owner
+              <button className="post-your-review-button">
+                <OpenModalMenuItem
+                  itemText="Post Your Review"
+                  modalComponent={<PostReviewModal props={props} />}
+                />
+              </button>
+            )}
           </>
         )}
       </div>

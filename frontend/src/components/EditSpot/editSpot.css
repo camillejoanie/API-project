@@ -1,92 +1,4 @@
 .create-form-inputBox {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .create-spot-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    padding: 25px;
-    color: rgb(235, 136, 153);
-    font-family: Andale Mono, monospace;
-  }
-  
-  .create-spot-form input,
-  .create-spot-form textarea {
-    margin: 5px;
-    padding: 3px;
-    border: 1px solid rgb(235, 136, 153);
-    border-radius: 4px;
-    /* width: auto; Let the width be determined by content */
-  }
-  
-  .create-form-description-textarea textarea {
-    resize: none;
-    width: 480px;
-    height: 150px;
-  }
-  
-  .create-form-country-address {
-    width: 480px; 
-  }
-  
-  .create-form-cit-state-lat-lng {
-    width: 45%;
-  }
-
-  .create-spot-name-field {
-    width: 480px;
-  }
-  
-  .create-form-spot-images input {
-    width: 480px;
-  }
-  
-  .create-spot-price-field {
-    width: 472px;
-  }
-  
-  .button-div {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 15px;
-  }
-  
-  .create-form-submit-button {
-    width: 150px;
-    background-color: rgb(235, 136, 153);
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px 2px lightgray;
-    cursor: pointer;
-  }
-
-  .create-form-submit-button:hover {
-    background-color: lightpink;
-  }
-  
-  .create-form-errors {
-    color: red;
-  }
-  
-  .city-state-lat-lng-labels {
-    display: flex;
-  }
-
-  .address-label-state {
-    margin-left: 213px;
-  }
-
-  .address-label-lng {
-    margin-left: 176px;
-  }
-
-/* createSpot.css */
-
-/* .create-form-inputBox {
   display: flex;
   justify-content: center;
 }
@@ -106,9 +18,35 @@
   padding: 3px;
   border: 1px solid rgb(235, 136, 153);
   border-radius: 4px;
-  /* width: 100%; */
+  /* width: auto; Let the width be determined by content */
+}
 
-/* .button-div {
+.create-form-description-textarea textarea {
+  resize: none;
+  width: 480px;
+  height: 150px;
+}
+
+.create-form-country-address {
+  width: 480px; 
+}
+
+.create-form-cit-state-lat-lng {
+  width: 45%;
+}
+.create-spot-name-field {
+  width: 480px;
+}
+
+.create-form-spot-images input {
+  width: 480px;
+}
+
+.create-spot-price-field {
+  width: 472px;
+}
+
+.button-div {
   display: flex;
   justify-content: center;
   padding-bottom: 15px;
@@ -124,7 +62,6 @@
   box-shadow: 2px 2px 2px 2px lightgray;
   cursor: pointer;
 }
-
 .create-form-submit-button:hover {
   background-color: lightpink;
 }
@@ -133,14 +70,12 @@
   color: red;
 }
 
-.address-label {
-  display: block; 
-  margin-bottom: 5px;
-  font-weight: bold;
+.city-state-lat-lng-labels {
+  display: flex;
 }
-
-.address-label-short {
-    /* display: flex; */
-    /* margin-bottom: 5px;
-    width: 30%;
-} */
+.address-label-state {
+  margin-left: 213px;
+}
+.address-label-lng {
+  margin-left: 176px;
+}

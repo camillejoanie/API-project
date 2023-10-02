@@ -49,7 +49,7 @@ module.exports = {
         },
         {
           spotId: 2,
-          url: "https://s3-media0.fl.yelpcdn.com/bphoto/ROa77CTmQCCDJ0b-nvkY3A/o.jpg",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/o4tZ6kv1yXjCO_v0fcq7wA/o.jpg",
           preview: true,
         },
         {
@@ -59,7 +59,7 @@ module.exports = {
         },
         {
           spotId: 2,
-          url: "https://s3-media0.fl.yelpcdn.com/bphoto/4aAh14_luIrMGp4AcPWfPQ/o.jpg",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/blaOeQQshlp5LOidE9MZFQ/o.jpg",
           preview: false,
         },
         {
@@ -69,7 +69,7 @@ module.exports = {
         },
         {
           spotId: 2,
-          url: "https://s3-media0.fl.yelpcdn.com/bphoto/FePmvFM7iYezp3bwpP6TBw/o.jpg",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/_Hosc-67J-zGNawU5MDIXA/o.jpg",
           preview: false,
         },
         {
@@ -99,7 +99,7 @@ module.exports = {
         },
         {
           spotId: 4,
-          url: "https://s3-media0.fl.yelpcdn.com/bphoto/R9cObC3dTzAA6pHF6h4GcA/o.jpg",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/dTbhuMXTW7UkVCmUVHWqZA/o.jpg",
           preview: true,
         },
         {
@@ -124,7 +124,7 @@ module.exports = {
         },
         {
           spotId: 5,
-          url: "https://s3-media0.fl.yelpcdn.com/bphoto/-P_q-8qHy7zYCeMfEzc_hg/o.jpg",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/bMUofJoifTHfgooNj_CbxA/o.jpg",
           preview: true,
         },
         {
@@ -139,7 +139,7 @@ module.exports = {
         },
         {
           spotId: 5,
-          url: "https://static.wikia.nocookie.net/gartenofbanbanfanon/images/1/12/The_best_gif_ever.gif/revision/latest?cb=20230827165242",
+          url: "https://media.tenor.com/_RzpIUqvsXAAAAAC/boba.gif",
           preview: false,
         },
         {
@@ -149,7 +149,7 @@ module.exports = {
         },
         {
           spotId: 6,
-          url: "https://s3-media0.fl.yelpcdn.com/bphoto/_z1sRR8PvwUom5q6EMtgPg/o.jpg",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/A3k1KHzIqKPIusqXIedOlw/o.jpg",
           preview: true,
         },
         {
@@ -169,7 +169,7 @@ module.exports = {
         },
         {
           spotId: 6,
-          url: "https://s3-media0.fl.yelpcdn.com/bphoto/VKoYS6kY74EZL4h7dixMwQ/o.jpg",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/oPyHw16JgHbeLjwTzWGghA/o.jpg",
           preview: false,
         },
         {

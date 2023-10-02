@@ -69,3 +69,8 @@ label {
   color: rgb(235, 136, 153);
   font-weight: bold;
 }
+
+.signup-button-disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
