@@ -204,23 +204,6 @@ export const deleteSpot = (spotId) => async (dispatch) => {
   }
 }
 
-// export const deleteSpot = (id, spotId) => async (dispatch) => {
-//   try {
-//     const response = await csrfFetch(`/api/spots/${id}`, {
-//       method: 'DELETE'
-//     });
-//     if (response.ok) {
-//       const spot = await response.json();
-//       const waiting = await dispatch(deleteSpotAction(spotId))
-//       const stillWaiting = await dispatch(getSpot(spotId))
-//       return spot;
-//     }
-//   } catch (error) {
-//       console.error("error deleting the spot", error);
-//       throw error;
-//   }
-// }
-
 const initialState = {
   allSpots: {},
   singleSpot: {},

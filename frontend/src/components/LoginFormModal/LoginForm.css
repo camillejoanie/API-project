@@ -109,3 +109,8 @@ label {
 .login-error {
   color: red;
 }
+
+.login-button-disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

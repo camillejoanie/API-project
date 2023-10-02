@@ -10,6 +10,7 @@ export default function SpotDetails() {
   const dispatch = useDispatch();
   const singleSpot = useSelector((state) => state.spots.singleSpot);
   // console.log("AHHHHHHHHHH", singleSpot);
+  // const currentUser = useSelector((state) => state.auth.user);
 
   const fullHeart = process.env.PUBLIC_URL + "/images/fullheart.svg";
 
@@ -54,6 +55,7 @@ export default function SpotDetails() {
     alert('Feature coming soon!')
   }
 
+  // const isCurrentUserOwner = currentUser && currentUser.id === singleSpot.Owner.id;
 
   return (
     <div className="spot-details-container">

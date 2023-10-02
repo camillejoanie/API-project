@@ -52,6 +52,12 @@ export default function ManageSpots() {
         <h1 className="manage-spots-heading">Manage Spots</h1>
       </div>
 
+      <div className="no-spots-manage-spots">
+        <Link to={"/spots/new"}>
+          <button className="manage-spots-create-button" onClick={createSpot}>Create a new Spot</button>
+        </Link>
+      </div>
+
       <div className="all-spots-container">
         {spotsList.map(
           ({ id, previewImage, name, city, state, price, avgRating }) => (
@@ -59,6 +65,7 @@ export default function ManageSpots() {
               <div className="manage-spot">
                 <Link to={`/spots/${id}`}>
                   <div className="manage-spot-image-div">
+                  {console.log("Preview Image URL:", previewImage)}
                     <img
                       src={
                         previewImage ||
