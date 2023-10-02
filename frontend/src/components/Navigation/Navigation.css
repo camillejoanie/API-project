@@ -103,6 +103,10 @@ img.logo {
   align-items: center;
 }
 
+.create-link {
+  margin-right: 40px;
+}
+
 .nav-profile-create {
   display: flex;
   align-items: center;
@@ -111,7 +115,7 @@ img.logo {
 
 a:-webkit-any-link {
   text-decoration: none;
-  margin-right: 40px;
+  /* margin-right: 40px; */
   color: rgb(235, 136, 153);
   font-family: Andale Mono, monospace;
 }

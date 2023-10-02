@@ -36,7 +36,7 @@ export default function SpotReviews() {
         {currentUser && isOwner && <></>}
         {currentUser && currentUserId && !isOwner && (
           <>
-            {!isOwner && ( // Check if the user is NOT the owner
+            {!isOwner && ( 
               <button className="post-your-review-button">
                 <OpenModalMenuItem
                   itemText="Post Your Review"
