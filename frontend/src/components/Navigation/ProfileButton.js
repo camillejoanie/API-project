@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import OpenModalMenuItem from './OpenModalMenuItem';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
+import OpenModalMenuItem from "./OpenModalMenuItem";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 // import './ProfileButton.css'
@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
-    history.push('/')
+    history.push("/");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -52,11 +52,7 @@ function ProfileButton({ user }) {
         <i className="fas fa-bars" />
         {user ? (
           <div className="heart-profile-icon">
-            <img
-              src={heartIcon}
-              alt="Heart"
-              className="heart-profile"
-            />
+            <img src={heartIcon} alt="Heart" className="heart-profile" />
             <span className="user-initial">{user.firstName[0]}</span>
           </div>
         ) : (
@@ -76,7 +72,9 @@ function ProfileButton({ user }) {
             </div>
             <div className="manage-spots-in-profile-button">
               <li>
-                <Link to={"/spots/current"} onClick={closeMenu}>Manage Spots</Link>
+                <Link to={"/spots/current"} onClick={closeMenu}>
+                  Manage Spots
+                </Link>
               </li>
             </div>
             <div className="logout-button">

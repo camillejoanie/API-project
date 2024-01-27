@@ -26,7 +26,7 @@ ul li {
     cursor: pointer;
     font-size: 2rem;
     padding: 10px 20px;
-    color: rgb(235, 136, 153);;
+    color: rgb(235, 136, 153);
     background-color: white;
   }
 }
@@ -56,7 +56,7 @@ img.hamburger {
 }
 
 /* dropdown styles */
-.profile-dropdown{
+.profile-dropdown {
   position: absolute;
   top: 100%;
   right: 0;
@@ -64,8 +64,8 @@ img.hamburger {
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  width: 160px; 
-  display: none; 
+  width: 160px;
+  display: none;
   align-items: center;
   color: rgb(235, 136, 153);
   font-family: Andale Mono, monospace;
@@ -131,21 +131,34 @@ a:-webkit-any-link {
   width: 25px;
   height: 25px;
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .user-initial {
   color: white;
   font-family: Andale Mono, monospace;
-  font-size: 10px; 
+  font-size: 10px;
   margin-left: 9px;
   margin-top: 7px;
-  position: absolute; 
-  top: 0; 
+  position: absolute;
+  top: 0;
   left: 0;
-  z-index: 2; 
+  z-index: 2;
 }
 
 .user-info-in-profile-button {
   border-bottom: 1px solid rgb(235, 136, 153);
+}
+
+.login-signup-menu {
+  text-align: center;
+  padding: 10px;
+}
+
+.login-signup-menu:hover {
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  border-radius: 15px;
 }
